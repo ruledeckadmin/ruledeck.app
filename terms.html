@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms of Service — Ruledeck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0C1117; --ink2: #1A2332; --border: #1E2D3D; --border2: #263545;
+    --accent: #2563EB; --accent2: #38BDF8; --surface: #111827; --surface2: #0F1923;
+    --white: #F8FAFC; --dimwhite: #CBD5E1; --muted: #6B7280; --amber: #F59E0B;
+    --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--white); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.018) 39px, rgba(255,255,255,.018) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.018) 39px, rgba(255,255,255,.018) 40px);
+    pointer-events: none; z-index: 0;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 48px; background: rgba(12,17,23,.92);
+    backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark {
+    width: 34px; height: 34px; border-radius: 50%; background: #1a4a6e;
+    border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-text { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--white); }
+  .nav-logo-text span { color: var(--accent2); }
+  .nav-back { color: var(--dimwhite); font-size: 14px; text-decoration: none; transition: color .2s; }
+  .nav-back:hover { color: var(--white); }
+  .page { max-width: 780px; margin: 0 auto; padding: 120px 32px 80px; position: relative; z-index: 1; }
+  .page-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; }
+  h1 { font-family: var(--sans); font-weight: 700; font-size: 38px; color: var(--white); margin-bottom: 8px; line-height: 1.15; }
+  .meta { font-size: 13px; color: var(--muted); margin-bottom: 48px; font-family: var(--mono); }
+  .toc {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px 28px; margin-bottom: 48px;
+  }
+  .toc-title { font-size: 12px; font-family: var(--mono); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .toc li { font-size: 14px; }
+  .toc a { color: var(--accent2); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .section { margin-bottom: 48px; }
+  h2 { font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--white); margin-bottom: 16px; padding-top: 8px; border-top: 1px solid var(--border); padding-top: 24px; }
+  p { font-size: 15px; color: var(--dimwhite); line-height: 1.75; margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  ul, ol { padding-left: 24px; margin-bottom: 14px; }
+  li { font-size: 15px; color: var(--dimwhite); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--white); font-weight: 600; }
+  .highlight-box {
+    background: rgba(37,99,235,.08); border: 1px solid rgba(37,99,235,.2);
+    border-radius: 8px; padding: 18px 22px; margin-bottom: 14px;
+  }
+  .highlight-box p { color: var(--dimwhite); margin-bottom: 0; }
+  .warning-box {
+    background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.2);
+    border-radius: 8px; padding: 18px 22px; margin-bottom: 14px;
+  }
+  .warning-box p { color: var(--dimwhite); margin-bottom: 0; }
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: var(--muted); position: relative; z-index: 1;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 28px; height: 28px; border-radius: 50%; background: #1a4a6e; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; }
+  .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--dimwhite); }
+  .footer-logo span { color: var(--accent2); }
+  .footer-links { display: flex; gap: 24px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--dimwhite); }
+  @media (max-width: 600px) { nav { padding: 14px 20px; } .page { padding: 100px 20px 60px; } footer { flex-direction: column; gap: 16px; padding: 24px 20px; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+        <rect x="2" y="2" width="16" height="4" rx="1" fill="white" opacity="0.9"/>
+        <rect x="2" y="8" width="16" height="3" rx="1" fill="white" opacity="0.6"/>
+        <rect x="2" y="13" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.9"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Rule<span>deck</span></span>
+  </a>
+  <a class="nav-back" href="/">&larr; Back to ruledeck.app</a>
+</nav>
+
+<div class="page">
+  <p class="page-eyebrow">Legal</p>
+  <h1>Terms of Service</h1>
+  <p class="meta">Effective date: 7 April 2026 &nbsp;&middot;&nbsp; Issued by MSBit O&Uuml;, Estonia</p>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#acceptance">Acceptance of terms</a></li>
+      <li><a href="#licence">Licence grant</a></li>
+      <li><a href="#restrictions">Restrictions</a></li>
+      <li><a href="#delivery">Delivery and access</a></li>
+      <li><a href="#payment">Payment and refunds</a></li>
+      <li><a href="#warranty">Warranty disclaimer</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#continuity">Product continuity</a></li>
+      <li><a href="#data">Data and privacy</a></li>
+      <li><a href="#governing">Governing law</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="acceptance">
+    <h2>1. Acceptance of terms</h2>
+    <p>By purchasing or using Ruledeck, you agree to be bound by these Terms of Service. If you are purchasing on behalf of a company or organisation, you represent that you have the authority to bind that entity to these terms.</p>
+    <p>If you do not agree to these terms, do not purchase or use the software.</p>
+  </div>
+
+  <div class="section" id="licence">
+    <h2>2. Licence grant</h2>
+    <p>Upon purchase, MSBit O&Uuml; (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;Ruledeck&rdquo;) grants you a <strong>perpetual, non-exclusive, non-transferable licence</strong> to install and use Ruledeck on a single server or infrastructure environment controlled by you (&ldquo;one installation&rdquo;).</p>
+    <p>The licence is valid indefinitely for the version of the software delivered at the time of purchase. It does not expire.</p>
+    <div class="highlight-box">
+      <p><strong>One licence = one installation.</strong> A single licence permits one running production instance. Additional installations require additional licences. Test and staging environments running on the same infrastructure as your single licensed production instance do not require separate licences.</p>
+    </div>
+  </div>
+
+  <div class="section" id="restrictions">
+    <h2>3. Restrictions</h2>
+    <p>You may not:</p>
+    <ul>
+      <li>Redistribute, resell, sublicense, or transfer the software or your licence to any third party</li>
+      <li>Use the software to build a competing product or service</li>
+      <li>Remove or obscure any proprietary notices within the software</li>
+      <li>Use the software to provide a hosted service to third parties without a separate commercial agreement</li>
+    </ul>
+    <p>You may modify the software for your own internal use. Modifications do not affect the validity of your licence.</p>
+  </div>
+
+  <div class="section" id="delivery">
+    <h2>4. Delivery and access</h2>
+    <p>Following successful payment, you will receive a licence key and access to the software via the delivery method specified at checkout (Docker image, download link, or similar). Delivery is electronic and considered complete when the licence key and access instructions are sent to the email address you provided.</p>
+    <p>You are responsible for maintaining secure access to your licence key. Do not share your licence key publicly.</p>
+  </div>
+
+  <div class="section" id="payment">
+    <h2>5. Payment and refunds</h2>
+    <p>All prices are in Euros (&euro;) and include applicable VAT where required. Payment is processed by Lemon Squeezy, our authorised payment processor.</p>
+    <p><strong>Refund policy:</strong> Due to the digital nature of the product, refunds are available within <strong>14 days of purchase</strong>, provided the software has not been activated or deployed in a production environment. To request a refund, contact <a href="mailto:hello@ruledeck.app" style="color:var(--accent2);">hello@ruledeck.app</a> within the 14-day window with your order number.</p>
+    <p>Refunds are not available after activation or after the 14-day window has passed.</p>
+  </div>
+
+  <div class="section" id="warranty">
+    <h2>6. Warranty disclaimer</h2>
+    <div class="warning-box">
+      <p>The software is provided <strong>&ldquo;as is&rdquo;</strong> without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the software will be error-free, uninterrupted, or meet your specific requirements.</p>
+    </div>
+    <p>You assume full responsibility for evaluating the software&rsquo;s suitability for your intended use prior to purchase.</p>
+  </div>
+
+  <div class="section" id="liability">
+    <h2>7. Limitation of liability</h2>
+    <p>To the maximum extent permitted by applicable law, MSBit O&Uuml; shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+    <ul>
+      <li>Loss of profits, revenue, or data</li>
+      <li>Business interruption or system downtime</li>
+      <li>Costs of substitute software or services</li>
+      <li>Any damages arising from your use or inability to use the software</li>
+    </ul>
+    <p>Our total aggregate liability for any claim arising from or related to the software shall not exceed the amount you paid for the licence.</p>
+    <p>These limitations apply regardless of the legal theory under which a claim is brought and even if we have been advised of the possibility of such damages.</p>
+  </div>
+
+  <div class="section" id="continuity">
+    <h2>8. Product continuity</h2>
+    <div class="warning-box">
+      <p>Your licence grants <strong>perpetual use of the version purchased</strong>. Ruledeck provides no guarantee of future updates, continued development, bug fixes, security patches, or ongoing support beyond what is explicitly stated at the time of purchase.</p>
+    </div>
+    <p>We reserve the right to discontinue the sale, development, or support of Ruledeck at any time without notice. Existing licences remain valid and the software you have received remains yours to use under the terms of this agreement. Discontinuation does not entitle you to a refund.</p>
+    <p>Where updates are made available, they may be provided at our discretion and are not guaranteed to be free of charge.</p>
+  </div>
+
+  <div class="section" id="data">
+    <h2>9. Data and privacy</h2>
+    <p>Ruledeck is self-hosted software. We do not have access to any data you process through the software, including customer records, decision inputs, or business logic configured within your installation.</p>
+    <p>The personal data we collect in connection with your purchase (name, email address, payment details) is handled in accordance with our <a href="/privacy" style="color:var(--accent2);">Privacy Policy</a>.</p>
+  </div>
+
+  <div class="section" id="governing">
+    <h2>10. Governing law</h2>
+    <p>These terms are governed by and construed in accordance with the laws of the <strong>Republic of Estonia</strong>. Any disputes arising from or related to these terms or the software shall be subject to the exclusive jurisdiction of the courts of Estonia.</p>
+    <p>If any provision of these terms is found to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>11. Contact</h2>
+    <p>For questions about these terms, licensing, or refunds:</p>
+    <p>
+      <strong>MSBit O&Uuml;</strong><br>
+      Registry code: 14925894<br>
+      Estonia<br>
+      Email: <a href="mailto:hello@ruledeck.app" style="color:var(--accent2);">hello@ruledeck.app</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-mark">
+      <svg viewBox="0 0 20 20" fill="none" width="12" height="12">
+        <rect x="2" y="2" width="16" height="4" rx="1" fill="white" opacity="0.9"/>
+        <rect x="2" y="8" width="16" height="3" rx="1" fill="white" opacity="0.6"/>
+        <rect x="2" y="13" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="footer-logo">RULE<span>DECK</span></div>
+  </div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="mailto:hello@ruledeck.app">Contact</a>
+  </div>
+  <div>&copy; 2026 MSBit O&Uuml;. All rights reserved.</div>
+</footer>
+</body>
+</html>

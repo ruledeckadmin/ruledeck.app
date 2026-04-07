@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — Ruledeck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0C1117; --ink2: #1A2332; --border: #1E2D3D;
+    --accent: #2563EB; --accent2: #38BDF8; --surface2: #0F1923;
+    --white: #F8FAFC; --dimwhite: #CBD5E1; --muted: #6B7280; --amber: #F59E0B;
+    --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--white); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.018) 39px, rgba(255,255,255,.018) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.018) 39px, rgba(255,255,255,.018) 40px);
+    pointer-events: none; z-index: 0;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 48px; background: rgba(12,17,23,.92);
+    backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark { width: 34px; height: 34px; border-radius: 50%; background: #1a4a6e; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-text { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--white); }
+  .nav-logo-text span { color: var(--accent2); }
+  .nav-back { color: var(--dimwhite); font-size: 14px; text-decoration: none; transition: color .2s; }
+  .nav-back:hover { color: var(--white); }
+  .page { max-width: 780px; margin: 0 auto; padding: 120px 32px 80px; position: relative; z-index: 1; }
+  .page-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; }
+  h1 { font-family: var(--sans); font-weight: 700; font-size: 38px; color: var(--white); margin-bottom: 8px; line-height: 1.15; }
+  .meta { font-size: 13px; color: var(--muted); margin-bottom: 48px; font-family: var(--mono); }
+  .toc { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 48px; }
+  .toc-title { font-size: 12px; font-family: var(--mono); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+  .toc li { font-size: 14px; }
+  .toc a { color: var(--accent2); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .section { margin-bottom: 48px; }
+  h2 { font-family: var(--sans); font-weight: 700; font-size: 20px; color: var(--white); margin-bottom: 16px; border-top: 1px solid var(--border); padding-top: 24px; }
+  p { font-size: 15px; color: var(--dimwhite); line-height: 1.75; margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+  ul, ol { padding-left: 24px; margin-bottom: 14px; }
+  li { font-size: 15px; color: var(--dimwhite); line-height: 1.75; margin-bottom: 6px; }
+  strong { color: var(--white); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  th { font-size: 12px; font-family: var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; padding: 10px 14px; background: var(--ink2); border: 1px solid var(--border); text-align: left; }
+  td { font-size: 14px; color: var(--dimwhite); padding: 10px 14px; border: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+  .highlight-box { background: rgba(37,99,235,.08); border: 1px solid rgba(37,99,235,.2); border-radius: 8px; padding: 18px 22px; margin-bottom: 14px; }
+  .highlight-box p { color: var(--dimwhite); margin-bottom: 0; }
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--muted); position: relative; z-index: 1; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-mark { width: 28px; height: 28px; border-radius: 50%; background: #1a4a6e; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; }
+  .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--dimwhite); }
+  .footer-logo span { color: var(--accent2); }
+  .footer-links { display: flex; gap: 24px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--dimwhite); }
+  @media (max-width: 600px) { nav { padding: 14px 20px; } .page { padding: 100px 20px 60px; } footer { flex-direction: column; gap: 16px; padding: 24px 20px; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+        <rect x="2" y="2" width="16" height="4" rx="1" fill="white" opacity="0.9"/>
+        <rect x="2" y="8" width="16" height="3" rx="1" fill="white" opacity="0.6"/>
+        <rect x="2" y="13" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.9"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Rule<span>deck</span></span>
+  </a>
+  <a class="nav-back" href="/">&larr; Back to ruledeck.app</a>
+</nav>
+
+<div class="page">
+  <p class="page-eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Effective date: 7 April 2026 &nbsp;&middot;&nbsp; Issued by MSBit O&Uuml;, Estonia</p>
+
+  <div class="highlight-box" style="margin-bottom:48px;">
+    <p><strong>Short version:</strong> Ruledeck is self-hosted software. We do not have access to any data you process through your installation. The only personal data we hold is what you provide when making a purchase &mdash; your name and email address. We do not sell it, share it, or use it for marketing.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#what">What data we collect</a></li>
+      <li><a href="#how">How we use your data</a></li>
+      <li><a href="#third-parties">Third parties</a></li>
+      <li><a href="#retention">Retention</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="who">
+    <h2>1. Who we are</h2>
+    <p>This Privacy Policy applies to Ruledeck, a software product developed and sold by <strong>MSBit O&Uuml;</strong>, a company registered in Estonia (registry code 14925894).</p>
+    <p>MSBit O&Uuml; is the data controller for personal data collected in connection with purchases and support communications.</p>
+    <p>Contact: <a href="mailto:hello@ruledeck.app" style="color:var(--accent2);">hello@ruledeck.app</a></p>
+  </div>
+
+  <div class="section" id="what">
+    <h2>2. What data we collect</h2>
+    <table>
+      <tr><th>Data</th><th>Source</th><th>Purpose</th></tr>
+      <tr><td><strong>Name and email address</strong></td><td>Provided by you at checkout via Lemon Squeezy</td><td>Licence delivery, support communications</td></tr>
+      <tr><td><strong>Order and payment information</strong></td><td>Lemon Squeezy (payment processor)</td><td>Transaction records, VAT compliance, refund processing</td></tr>
+      <tr><td><strong>Support communications</strong></td><td>Emails sent to hello@ruledeck.app</td><td>Responding to your enquiries</td></tr>
+    </table>
+    <p>We do <strong>not</strong> collect:</p>
+    <ul>
+      <li>Any data processed through your Ruledeck installation (decision inputs, outputs, rule logic, customer data)</li>
+      <li>Usage analytics or telemetry from your installation</li>
+      <li>IP addresses, device identifiers, or browsing behaviour beyond standard web server logs</li>
+    </ul>
+  </div>
+
+  <div class="section" id="how">
+    <h2>3. How we use your data</h2>
+    <p>We use your personal data solely to:</p>
+    <ul>
+      <li>Deliver your licence key and software access following purchase</li>
+      <li>Respond to support requests you initiate</li>
+      <li>Process refunds where applicable</li>
+      <li>Comply with legal and tax obligations (VAT records, accounting)</li>
+    </ul>
+    <p>We do not use your data for marketing, profiling, or automated decision-making. We do not sell your data to any third party.</p>
+    <p>The legal basis for processing under GDPR is: <strong>contract performance</strong> (delivering the software you purchased) and <strong>legitimate interests</strong> (responding to support requests).</p>
+  </div>
+
+  <div class="section" id="third-parties">
+    <h2>4. Third parties</h2>
+    <p>We use the following third-party services in connection with purchases and support:</p>
+    <table>
+      <tr><th>Service</th><th>Purpose</th><th>Privacy policy</th></tr>
+      <tr>
+        <td><strong>Lemon Squeezy</strong></td>
+        <td>Payment processing, checkout, licence key generation, VAT handling</td>
+        <td><a href="https://www.lemonsqueezy.com/privacy" style="color:var(--accent2);" target="_blank">lemonsqueezy.com/privacy</a></td>
+      </tr>
+      <tr>
+        <td><strong>Zoho Mail</strong></td>
+        <td>Support email inbox (hello@ruledeck.app)</td>
+        <td><a href="https://www.zoho.com/privacy.html" style="color:var(--accent2);" target="_blank">zoho.com/privacy</a></td>
+      </tr>
+      <tr>
+        <td><strong>GitHub Pages</strong></td>
+        <td>Hosting of this website (ruledeck.app)</td>
+        <td><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" style="color:var(--accent2);" target="_blank">GitHub Privacy Statement</a></td>
+      </tr>
+    </table>
+    <p>Each of these providers operates under their own privacy policy and data processing agreements. We have selected providers that are GDPR-compliant.</p>
+    <p>No other third parties receive your personal data.</p>
+  </div>
+
+  <div class="section" id="retention">
+    <h2>5. Retention</h2>
+    <p>We retain personal data for as long as necessary to fulfil the purposes described above:</p>
+    <ul>
+      <li><strong>Purchase and order records</strong> &mdash; 7 years, as required by Estonian accounting law</li>
+      <li><strong>Support communications</strong> &mdash; up to 2 years after the last communication, then deleted</li>
+      <li><strong>Licence records</strong> &mdash; for the lifetime of the licence to enable support and refund processing</li>
+    </ul>
+  </div>
+
+  <div class="section" id="rights">
+    <h2>6. Your rights</h2>
+    <p>Under the GDPR, you have the following rights regarding your personal data:</p>
+    <ul>
+      <li><strong>Access</strong> &mdash; request a copy of the personal data we hold about you</li>
+      <li><strong>Rectification</strong> &mdash; request correction of inaccurate data</li>
+      <li><strong>Erasure</strong> &mdash; request deletion of your data, subject to legal retention obligations</li>
+      <li><strong>Restriction</strong> &mdash; request that we limit processing of your data</li>
+      <li><strong>Portability</strong> &mdash; request your data in a machine-readable format</li>
+      <li><strong>Objection</strong> &mdash; object to processing based on legitimate interests</li>
+    </ul>
+    <p>To exercise any of these rights, contact <a href="mailto:hello@ruledeck.app" style="color:var(--accent2);">hello@ruledeck.app</a>. We will respond within 30 days.</p>
+    <p>You also have the right to lodge a complaint with the Estonian Data Protection Inspectorate (<a href="https://www.aki.ee" style="color:var(--accent2);" target="_blank">aki.ee</a>) if you believe your rights have been infringed.</p>
+  </div>
+
+  <div class="section" id="security">
+    <h2>7. Security</h2>
+    <p>We take reasonable technical and organisational measures to protect your personal data against unauthorised access, disclosure, or loss. Support communications are handled via Zoho Mail with appropriate access controls. Payment data is handled entirely by Lemon Squeezy and is not stored by us.</p>
+    <p>No method of transmission over the internet is completely secure. While we take reasonable precautions, we cannot guarantee absolute security.</p>
+  </div>
+
+  <div class="section" id="cookies">
+    <h2>8. Cookies</h2>
+    <p>The ruledeck.app website is a static site hosted on GitHub Pages. We do not set any first-party cookies and do not use analytics tracking.</p>
+    <p>GitHub Pages may set cookies in connection with their hosting infrastructure. Refer to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" style="color:var(--accent2);" target="_blank">GitHub Privacy Statement</a> for details.</p>
+    <p>The Lemon Squeezy checkout page, accessed when making a purchase, operates under Lemon Squeezy&rsquo;s own cookie policy.</p>
+  </div>
+
+  <div class="section" id="changes">
+    <h2>9. Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the effective date at the top of this page. Material changes will be communicated to customers via the email address associated with their purchase.</p>
+    <p>Continued use of the software following notification of changes constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>10. Contact</h2>
+    <p>For any questions or requests relating to this Privacy Policy or your personal data:</p>
+    <p>
+      <strong>MSBit O&Uuml;</strong><br>
+      Registry code: 14925894<br>
+      Estonia<br>
+      Email: <a href="mailto:hello@ruledeck.app" style="color:var(--accent2);">hello@ruledeck.app</a>
+    </p>
+    <p>We aim to respond to all privacy-related enquiries within 5 business days.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-mark">
+      <svg viewBox="0 0 20 20" fill="none" width="12" height="12">
+        <rect x="2" y="2" width="16" height="4" rx="1" fill="white" opacity="0.9"/>
+        <rect x="2" y="8" width="16" height="3" rx="1" fill="white" opacity="0.6"/>
+        <rect x="2" y="13" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="footer-logo">RULE<span>DECK</span></div>
+  </div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="mailto:hello@ruledeck.app">Contact</a>
+  </div>
+  <div>&copy; 2026 MSBit O&Uuml;. All rights reserved.</div>
+</footer>
+</body>
+</html>
