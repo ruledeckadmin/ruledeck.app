@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ruledeck — Your Business Rules. Your Server. Your Control.</title>
 <meta name="description" content="A lightweight self-hosted decision engine for operations, finance, retail, and tech teams. Visual editor, live API, audit trail. One-time licence, €499." />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231a4a6e'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Crect x='8' y='9' width='16' height='4' rx='1' fill='white' opacity='0.9'/%3E%3Crect x='8' y='15' width='16' height='3' rx='1' fill='white' opacity='0.6'/%3E%3Crect x='8' y='20' width='10' height='3' rx='1' fill='%23f59e0b' opacity='0.9'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -1063,77 +1065,6 @@
           </div>
           <button class="demo-run" onclick="runDemo()">Run &rarr;</button>
           <div id="demo-result" class="demo-result"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="faq-inner">
-      <div>
-        <p class="section-eyebrow">FAQ</p>
-        <h2>Questions<br><em>answered.</em></h2>
-        <p style="font-size:14px;color:var(--dimwhite);line-height:1.75;margin-top:16px;">Still have questions?<br><a href="/cdn-cgi/l/email-protection#472f222b2b280735322b222322242c69263737" style="color:var(--accent2);"><span class="__cf_email__" data-cfemail="99f1fcf5f5f6d9ebecf5fcfdfcfaf2b7f8e9e9">[email&#160;protected]</span></a></p>
-      </div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>Do I need a developer to use Ruledeck?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">No. The rule editor runs in any browser and is designed for business users &mdash; operations, risk, HR, product. You build decision tables by clicking, not coding. Your IT team handles the one-time setup (Docker install, about 10 minutes). After that, business users own their rules entirely.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>What does the setup process look like?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Your IT team needs Docker installed on a server. Then: create a .env file with your credentials, add the provided docker-compose.yml file, run <code style="font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:3px;">docker compose up -d</code>. Ruledeck starts, validates the licence, and is accessible in the browser. A full IT guide with step-by-step instructions is provided with the download.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>What happens if I need an update or a bug is fixed?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Updates are distributed as new Docker image versions. When an update is available, your IT team runs <code style="font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:3px;">docker compose pull &amp;&amp; docker compose up -d</code>. Your licence key carries forward. Data is in a persistent volume and is never touched by an update.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>What if Ruledeck stops being developed or supported?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Your licence is perpetual. You own the version you purchased and it continues to run indefinitely &mdash; it does not phone home or expire. If we ever discontinue Ruledeck, existing licences remain valid and the software remains yours to use. This is written into the Terms of Service.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>Is my data safe? Does Ruledeck send anything externally?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">The only outbound call Ruledeck makes is a licence validation to Lemon Squeezy on startup. No decision data, rule logic, customer information, or usage analytics is ever transmitted externally. Everything runs within your own infrastructure. This makes GDPR and data-residency compliance straightforward.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>Can I run multiple instances?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">One licence covers one production installation, which ships with two isolated environments (test and production) out of the box. If you need additional production deployments &mdash; separate servers for different teams or regions &mdash; each requires a separate licence. Contact us to discuss multi-licence options.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>I currently use Excel for business logic. Can I migrate?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Yes &mdash; that&rsquo;s one of the most common migrations. Ruledeck supports Excel import: format your decision table with condition and result columns, import it, and your rule is ready to test and publish. The visual editor looks similar to a spreadsheet, so the transition is natural for your team.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>How does my system call Ruledeck once it&rsquo;s set up?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">With a standard HTTP POST request. Any language that can make an HTTP request works &mdash; Python, JavaScript, PHP, Java, or anything else. You send your input values as JSON, Ruledeck evaluates and returns the result in milliseconds. Full API documentation is included with the download.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>What server do I need to run Ruledeck?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Any server running Docker. A &euro;5/month virtual server (2 vCPU, 4GB RAM) handles hundreds of thousands of decisions per month. Ruledeck runs on Linux, macOS, and Windows Server. Many teams run it on an existing server without provisioning anything new.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>Can business users change rules without involving IT?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Yes, that&rsquo;s the point. Once IT has deployed Ruledeck, business users log in through their browser, edit rules in the visual editor, test in the sandbox, and publish &mdash; all without writing code or opening an IT ticket. Changes go live in seconds. Every change is logged in the audit trail for accountability.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>Is there a refund policy?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Yes. Refunds are available within 14 days of purchase, provided the licence has not been activated. To request a refund, contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="046c6168686b44767168616061676f2a657474">[email&#160;protected]</a> with your order number. Full details are in the Terms of Service.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>What&rsquo;s the difference between Ruledeck and Zapier or n8n?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Zapier and n8n are workflow automation tools &mdash; they connect apps and trigger actions. Ruledeck is a decision engine &mdash; it evaluates business logic and returns a result via API. They often complement each other: Zapier or n8n can call Ruledeck as part of a workflow to get a decision, then route based on that result.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>I run a small business. Is Ruledeck overkill for me?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">Not necessarily. If you&rsquo;re making the same decision repeatedly &mdash; which orders qualify for free shipping, which customers get a discount, how to route incoming requests &mdash; and doing it manually or through a spreadsheet, Ruledeck automates that. It runs on a &euro;5/month server, takes 10 minutes to set up, and there&rsquo;s no ongoing subscription. For most businesses making dozens of decisions per day, the time saved pays for itself quickly.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)"><h4>Do I get the source code?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-          <div class="faq-answer">No. Ruledeck is distributed as a compiled Docker image. You get everything needed to run and operate the software, but not the source code. If your organisation has a specific requirement for source code access, contact us to discuss options.</div>
         </div>
       </div>
     </div>

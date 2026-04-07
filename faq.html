@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ — Ruledeck</title>
+<meta name="description" content="Frequently asked questions about Ruledeck — the self-hosted decision engine." />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0C1117; --ink2: #1A2332; --border: #1E2D3D; --border2: #263545;
+    --accent: #2563EB; --accent2: #38BDF8; --surface: #111827; --surface2: #0F1923;
+    --white: #F8FAFC; --dimwhite: #CBD5E1; --muted: #6B7280; --amber: #F59E0B;
+    --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--white); font-family: var(--sans); font-size: 16px; line-height: 1.6; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.018) 39px, rgba(255,255,255,.018) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.018) 39px, rgba(255,255,255,.018) 40px);
+    pointer-events: none; z-index: 0;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 48px; background: rgba(12,17,23,.92);
+    backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark { width: 34px; height: 34px; border-radius: 50%; background: #1a4a6e; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-logo-mark svg { width: 18px; height: 18px; }
+  .nav-logo-text { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--white); letter-spacing: .04em; }
+  .nav-logo-text span { color: var(--accent2); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { color: var(--dimwhite); font-size: 14px; text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta { background: var(--accent); color: #fff !important; padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 14px !important; transition: background .2s !important; }
+  .nav-cta:hover { background: #1D4ED8 !important; }
+  .page { max-width: 860px; margin: 0 auto; padding: 120px 32px 80px; position: relative; z-index: 1; }
+  .page-eyebrow { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 14px; }
+  h1 { font-family: var(--sans); font-weight: 700; font-size: clamp(32px, 5vw, 48px); color: var(--white); margin-bottom: 12px; line-height: 1.15; }
+  h1 em { font-style: normal; color: var(--accent2); }
+  .page-sub { font-size: 16px; color: var(--dimwhite); margin-bottom: 64px; line-height: 1.7; }
+  .faq-categories { display: flex; flex-direction: column; gap: 48px; }
+  .faq-category-label { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; cursor: pointer; gap: 20px; }
+  .faq-question h4 { font-size: 15px; font-weight: 600; color: var(--white); line-height: 1.4; }
+  .faq-chevron { flex-shrink: 0; width: 18px; height: 18px; color: var(--muted); transition: transform .25s; }
+  .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  .faq-answer { font-size: 14px; color: var(--dimwhite); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s; }
+  .faq-item.open .faq-answer { max-height: 500px; padding-bottom: 22px; }
+  .faq-answer a { color: var(--accent2); }
+  .faq-answer code { font-family: var(--mono); font-size: 12px; background: rgba(255,255,255,.06); padding: 1px 6px; border-radius: 3px; }
+  .cta-block { margin-top: 64px; background: var(--ink2); border: 1px solid var(--border); border-radius: 12px; padding: 40px; text-align: center; }
+  .cta-block h2 { font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+  .cta-block p { font-size: 15px; color: var(--dimwhite); margin-bottom: 28px; }
+  .cta-block a { display: inline-block; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 7px; font-weight: 600; font-size: 15px; text-decoration: none; transition: background .2s; }
+  .cta-block a:hover { background: #1D4ED8; }
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--muted); position: relative; z-index: 1; }
+  .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--dimwhite); }
+  .footer-logo span { color: var(--accent2); }
+  .footer-links { display: flex; gap: 24px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--dimwhite); }
+  @media (max-width: 600px) { nav { padding: 14px 20px; } .nav-links { display: none; } .page { padding: 100px 20px 60px; } footer { flex-direction: column; gap: 16px; padding: 24px 20px; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="16" height="4" rx="1" fill="white" opacity="0.9"/>
+        <rect x="2" y="8" width="16" height="3" rx="1" fill="white" opacity="0.6"/>
+        <rect x="2" y="13" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.9"/>
+      </svg>
+    </div>
+    <span class="nav-logo-text">Rule<span>deck</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="/#how">How it works</a>
+    <a href="/#features">Features</a>
+    <a href="/#usecases">Use cases</a>
+    <a href="/faq">FAQ</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="mailto:hello@ruledeck.app" class="nav-cta">Get in touch &rarr;</a>
+  </div>
+</nav>
+
+<div class="page">
+  <p class="page-eyebrow">FAQ</p>
+  <h1>Frequently asked<br><em>questions.</em></h1>
+  <p class="page-sub">Everything you need to know before buying. Still have a question? <a href="mailto:hello@ruledeck.app" style="color:var(--accent2);">hello@ruledeck.app</a></p>
+
+  <div class="faq-categories">
+
+    <div>
+      <div class="faq-category-label">Getting started</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>Do I need a developer to use Ruledeck?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">No. The rule editor runs in any browser and is designed for business users &mdash; operations, risk, HR, product. You build decision tables by clicking, not coding. Your IT team handles the one-time setup (Docker install, about 10 minutes). After that, business users own their rules entirely.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>What does the setup process look like?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Your IT team needs Docker installed on a server. Then: create a <code>.env</code> file with your credentials, add the provided <code>docker-compose.yml</code>, and run <code>docker compose up -d</code>. Ruledeck starts, validates the licence, and is accessible in the browser. A full IT guide with step-by-step instructions is included with the download.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>What server do I need?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Any server running Docker. A &euro;5/month virtual server (2 vCPU, 4GB RAM) handles hundreds of thousands of decisions per month. Ruledeck runs on Linux, macOS, and Windows Server. Many teams run it on an existing server they already have, without provisioning anything new.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>I run a small business. Is Ruledeck overkill for me?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Not necessarily. If you&rsquo;re making the same decision repeatedly &mdash; which orders qualify for free shipping, which customers get a discount, how to route incoming requests &mdash; and currently doing it manually or through a spreadsheet, Ruledeck automates that. It runs on a &euro;5/month server, takes 10 minutes to set up, and there&rsquo;s no ongoing subscription. For most businesses making dozens of decisions per day, the time saved pays for itself quickly.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>I currently use Excel for business logic. Can I migrate?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Yes &mdash; that&rsquo;s one of the most common migrations. Ruledeck supports Excel import: format your decision table with condition and result columns, import it, and your rule is ready to test and publish. The visual editor looks similar to a spreadsheet, so the transition is natural for your team.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="faq-category-label">Licence &amp; pricing</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>What exactly does the licence cover?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">One licence covers one production installation, which ships with two isolated environments (test and production) out of the box. The licence is perpetual &mdash; you pay once and use Ruledeck indefinitely. No subscriptions, no per-decision fees, no renewal.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>Can I run multiple instances?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Each production deployment requires a separate licence. If you need additional production installations &mdash; for different teams, regions, or environments &mdash; contact us to discuss multi-licence pricing at <a href="mailto:hello@ruledeck.app">hello@ruledeck.app</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>Is there a refund policy?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Yes. Refunds are available within 14 days of purchase, provided the licence has not been activated. To request a refund, contact <a href="mailto:hello@ruledeck.app">hello@ruledeck.app</a> with your order number. Full details are in the <a href="/terms">Terms of Service</a>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="faq-category-label">Technical</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>How does my system call Ruledeck?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">With a standard HTTP POST request. Any language that can make an HTTP request works &mdash; Python, JavaScript, PHP, Java, or anything else. You send your input values as JSON, Ruledeck evaluates and returns the result in milliseconds. Full API documentation is included with the download.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>What happens when I need an update?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Updates are distributed as new Docker image versions. When an update is available, your IT team runs <code>docker compose pull && docker compose up -d</code>. The licence key carries forward. Your data is in a persistent volume and is never touched by an update.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>Do I get the source code?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">No. Ruledeck is distributed as a compiled Docker image. You get everything needed to run and operate the software, but not the source code. If your organisation has a specific requirement for source code access, contact us to discuss options.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>What&rsquo;s the difference between Ruledeck and Zapier or n8n?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Zapier and n8n are workflow automation tools &mdash; they connect apps and trigger actions. Ruledeck is a decision engine &mdash; it evaluates business logic and returns a result via API. They often complement each other: Zapier or n8n can call Ruledeck as part of a workflow to get a decision, then route based on that result.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="faq-category-label">Data &amp; security</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>Is my data safe? Does Ruledeck send anything externally?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">The only outbound call Ruledeck makes is a licence validation to Lemon Squeezy on startup. No decision data, rule logic, customer information, or usage analytics is ever transmitted externally. Everything runs within your own infrastructure. This makes GDPR and data-residency compliance straightforward.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>What if Ruledeck stops being developed or supported?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Your licence is perpetual. You own the version you purchased and it continues to run indefinitely &mdash; it does not phone home or expire. If we ever discontinue Ruledeck, existing licences remain valid and the software remains yours to use. This is written into the <a href="/terms">Terms of Service</a>.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)"><h4>Can business users change rules without involving IT?</h4><svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <div class="faq-answer">Yes, that&rsquo;s the point. Once IT has deployed Ruledeck, business users log in through their browser, edit rules in the visual editor, test in the sandbox, and publish &mdash; all without writing code or opening an IT ticket. Changes go live in seconds. Every change is logged in the audit trail for accountability.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cta-block">
+    <h2>Ready to get started?</h2>
+    <p>One licence, your server, no ongoing costs. Deploy the same day.</p>
+    <a href="/#pricing">Get Ruledeck &mdash; &euro;499 &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">RULE<span>DECK</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/faq">FAQ</a>
+    <a href="/terms">Terms</a>
+    <a href="/privacy">Privacy</a>
+    <a href="mailto:hello@ruledeck.app">Contact</a>
+  </div>
+  <div>&copy; 2026 MSBit O&Uuml;. All rights reserved.</div>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
