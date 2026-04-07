@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ruledeck — See It In Action</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0C1117; --ink2: #1A2332; --border: #1E2D3D; --border2: #263545;
+  --accent: #2563EB; --accent2: #38BDF8; --green: #22C55E; --amber: #F59E0B;
+  --surface: #111827; --surface2: #0F1923; --white: #F8FAFC; --dimwhite: #CBD5E1;
+  --muted: #6B7280; --red: #EF4444;
+  --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--ink); color: var(--white); font-family: var(--sans); overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.015) 39px, rgba(255,255,255,.015) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.015) 39px, rgba(255,255,255,.015) 40px);
+}
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: rgba(12,17,23,.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-mark { width: 34px; height: 34px; border-radius: 50%; background: #1a4a6e; border: 2px solid #f59e0b; display: flex; align-items: center; justify-content: center; }
+.nav-logo-mark svg { width: 18px; height: 18px; }
+.nav-logo-text { font-size: 15px; font-weight: 700; color: var(--white); }
+.nav-logo-text span { color: var(--accent2); }
+.nav-back { color: var(--dimwhite); font-size: 14px; text-decoration: none; transition: color .2s; }
+.nav-back:hover { color: var(--white); }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 32px 80px; position: relative; z-index: 1; }
+.hero-inner { max-width: 800px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; color: var(--accent2); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 1.12; margin-bottom: 20px; }
+.hero h1 em { font-style: normal; color: var(--accent2); }
+.hero p { font-size: 17px; color: var(--dimwhite); line-height: 1.7; max-width: 560px; margin: 0 auto 40px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 7px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all .2s; cursor: pointer; border: none; font-family: var(--sans); }
+.btn:hover { background: #1D4ED8; transform: translateY(-1px); }
+.btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--dimwhite); margin-left: 12px; }
+.btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); background: transparent; }
+
+/* DEMO STAGE */
+.demo-stage { padding: 40px 32px 100px; position: relative; z-index: 1; }
+.demo-container { max-width: 1100px; margin: 0 auto; }
+
+/* STEP INDICATOR */
+.steps-nav { display: flex; justify-content: center; gap: 0; margin-bottom: 48px; }
+.step-pill { display: flex; align-items: center; gap: 8px; padding: 10px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); background: var(--surface2); cursor: pointer; transition: all .2s; }
+.step-pill:first-child { border-radius: 6px 0 0 6px; }
+.step-pill:last-child { border-radius: 0 6px 6px 0; }
+.step-pill.active { color: var(--accent2); border-color: var(--accent2); background: rgba(37,99,235,.08); }
+.step-pill .step-num { width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.step-pill.active .step-num { background: var(--accent); color: #fff; }
+.step-pill.done .step-num { background: var(--green); color: #fff; }
+.step-pill.done { color: var(--green); border-color: rgba(34,197,94,.3); }
+
+/* SCREEN */
+.screen { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,.5); }
+.screen-bar { background: var(--ink2); padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-r { background: #EF4444; } .dot-y { background: #F59E0B; } .dot-g { background: #22C55E; }
+.screen-url { margin-left: 8px; font-family: var(--mono); font-size: 11px; color: var(--muted); flex: 1; background: rgba(255,255,255,.04); padding: 4px 12px; border-radius: 4px; }
+
+/* APP CHROME */
+.app-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 520px; }
+.sidebar { background: var(--ink2); border-right: 1px solid var(--border); padding: 16px 0; }
+.sidebar-section { padding: 8px 16px; font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-top: 12px; }
+.sidebar-item { padding: 8px 16px; font-size: 13px; color: var(--dimwhite); cursor: pointer; display: flex; align-items: center; gap: 10px; border-left: 2px solid transparent; transition: all .15s; }
+.sidebar-item.active { background: rgba(37,99,235,.1); border-left-color: var(--accent2); color: var(--white); }
+.sidebar-item .badge { font-family: var(--mono); font-size: 9px; padding: 1px 6px; border-radius: 3px; margin-left: auto; }
+.badge-pub { background: rgba(34,197,94,.12); color: var(--green); }
+.badge-draft { background: rgba(107,114,128,.15); color: var(--muted); }
+.main-area { padding: 24px; overflow: hidden; }
+
+/* RULE EDITOR */
+.rule-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.rule-title { font-size: 16px; font-weight: 600; color: var(--white); }
+.rule-alias { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+.rule-actions { display: flex; gap: 8px; }
+.btn-sm { padding: 7px 14px; border-radius: 5px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; font-family: var(--sans); transition: all .2s; }
+.btn-test { background: rgba(37,99,235,.15); color: var(--accent2); }
+.btn-pub { background: var(--green); color: #fff; }
+.btn-pub:hover { background: #16a34a; }
+
+/* TABLE */
+.rule-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.rule-table th { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; background: rgba(255,255,255,.02); }
+.rule-table th.cond-hdr { color: var(--accent2); }
+.rule-table th.res-hdr { color: var(--green); }
+.rule-table td { padding: 9px 12px; border-bottom: 1px solid rgba(30,45,61,.6); color: var(--dimwhite); vertical-align: middle; }
+.rule-table tr:last-child td { border-bottom: none; }
+.rule-table tr.highlighted td { background: rgba(37,99,235,.08); }
+.rule-table tr.else-row td { color: var(--muted); font-style: italic; }
+.op-badge { display: inline-block; font-family: var(--mono); font-size: 10px; background: rgba(255,255,255,.06); padding: 2px 6px; border-radius: 3px; color: var(--accent2); }
+.res-val { color: var(--green); font-family: var(--mono); font-size: 11px; }
+.row-num { color: var(--muted); font-family: var(--mono); font-size: 10px; }
+
+/* TYPING CURSOR */
+.typing { border-right: 2px solid var(--accent2); animation: blink .7s step-end infinite; }
+@keyframes blink { 0%,100%{border-color:var(--accent2)} 50%{border-color:transparent} }
+
+/* TESTBENCH */
+.testbench { background: rgba(255,255,255,.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 16px; }
+.tb-header { font-family: var(--mono); font-size: 10px; color: var(--accent2); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+.tb-inputs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+.tb-field label { font-family: var(--mono); font-size: 9px; color: var(--muted); display: block; margin-bottom: 4px; letter-spacing: .08em; }
+.tb-field input { width: 100%; background: var(--ink); border: 1px solid var(--border2); color: var(--white); font-family: var(--mono); font-size: 11px; padding: 6px 10px; border-radius: 4px; outline: none; }
+.tb-field input.active { border-color: var(--accent); }
+.tb-result { padding: 12px; border-radius: 6px; font-family: var(--mono); font-size: 12px; line-height: 1.8; display: none; }
+.tb-result.matched { background: rgba(34,197,94,.07); border: 1px solid rgba(34,197,94,.2); display: block; }
+.tb-badge { display: inline-block; background: rgba(34,197,94,.15); color: var(--green); font-size: 10px; padding: 2px 8px; border-radius: 3px; margin-bottom: 8px; }
+
+/* API PANEL */
+.api-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.api-panel { background: var(--ink); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.api-panel-hdr { background: var(--ink2); padding: 10px 14px; font-family: var(--mono); font-size: 10px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+.method { background: rgba(37,99,235,.2); color: var(--accent2); padding: 2px 7px; border-radius: 3px; font-size: 9px; }
+.method.post { background: rgba(34,197,94,.15); color: var(--green); }
+.api-body { padding: 14px; font-family: var(--mono); font-size: 11px; line-height: 1.8; }
+.t-key { color: var(--accent2); } .t-str { color: #F9A8D4; } .t-num { color: #FCD34D; } .t-val { color: #86EFAC; } .t-muted { color: var(--muted); }
+.api-response { opacity: 0; transition: opacity .4s; }
+.api-response.visible { opacity: 1; }
+
+/* PANELS */
+.panel { display: none; animation: fadeIn .3s ease; }
+.panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* PROGRESS BAR */
+.progress-bar { height: 2px; background: var(--border); position: relative; margin-bottom: 32px; border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width .8s ease; }
+
+/* NARRATIVE */
+.narrative { text-align: center; margin-bottom: 32px; min-height: 56px; }
+.narrative h3 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.narrative p { font-size: 14px; color: var(--muted); }
+
+/* AUTO PLAY CONTROLS */
+.controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 32px; }
+.ctrl-btn { background: var(--surface); border: 1px solid var(--border); color: var(--dimwhite); padding: 10px 20px; border-radius: 6px; font-size: 13px; cursor: pointer; transition: all .2s; font-family: var(--sans); display: flex; align-items: center; gap: 8px; }
+.ctrl-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.ctrl-btn.playing { border-color: var(--amber); color: var(--amber); }
+.ctrl-next { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ctrl-next:hover { background: #1D4ED8; border-color: #1D4ED8; color: #fff; }
+
+/* CTA */
+.demo-cta { text-align: center; padding: 80px 32px; position: relative; z-index: 1; border-top: 1px solid var(--border); }
+.demo-cta h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; margin-bottom: 14px; }
+.demo-cta h2 em { font-style: normal; color: var(--accent2); }
+.demo-cta p { font-size: 16px; color: var(--dimwhite); margin-bottom: 32px; }
+
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .app-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .api-split { grid-template-columns: 1fr; }
+  .tb-inputs { grid-template-columns: 1fr 1fr; }
+  .steps-nav { flex-wrap: wrap; gap: 4px; }
+  .step-pill:first-child, .step-pill:last-child { border-radius: 6px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="4" rx="1" fill="white" opacity="0.9"/><rect x="2" y="8" width="16" height="3" rx="1" fill="white" opacity="0.6"/><rect x="2" y="13" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.9"/></svg>
+    </div>
+    <span class="nav-logo-text">Rule<span>deck</span></span>
+  </a>
+  <a class="nav-back" href="/">← Back to ruledeck.app</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Product Demo</p>
+    <h1>See how <em>decisions work</em><br>in Ruledeck</h1>
+    <p>Watch how a business rule goes from a blank table to a live API — no code, no engineers, no waiting.</p>
+    <button class="btn" onclick="startAutoplay()">▶ &nbsp;Watch the demo</button>
+    <a href="/#pricing" class="btn btn-ghost">Get Ruledeck — €499</a>
+  </div>
+</section>
+
+<section class="demo-stage">
+  <div class="demo-container">
+
+    <div class="steps-nav">
+      <div class="step-pill active" id="pill-0" onclick="goStep(0)"><span class="step-num">1</span> Build the rule</div>
+      <div class="step-pill" id="pill-1" onclick="goStep(1)"><span class="step-num">2</span> Test it</div>
+      <div class="step-pill" id="pill-2" onclick="goStep(2)"><span class="step-num">3</span> Publish</div>
+      <div class="step-pill" id="pill-3" onclick="goStep(3)"><span class="step-num">4</span> Call the API</div>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:25%"></div></div>
+
+    <div class="narrative" id="narrative">
+      <h3>Define your logic as a table</h3>
+      <p>Add condition columns for your inputs and result columns for your outputs. Each row is one rule.</p>
+    </div>
+
+    <div class="screen">
+      <div class="screen-bar">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <div class="screen-url" id="screen-url">ruledeck.yourdomain.com</div>
+      </div>
+
+      <!-- STEP 1: BUILD -->
+      <div class="panel active" id="panel-0">
+        <div class="app-layout">
+          <div class="sidebar">
+            <div class="sidebar-section">Rules</div>
+            <div class="sidebar-item active">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              loan-eligibility
+              <span class="badge badge-draft">draft</span>
+            </div>
+            <div class="sidebar-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              shipping-cost
+              <span class="badge badge-pub">pub</span>
+            </div>
+            <div class="sidebar-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              discount-rules
+              <span class="badge badge-pub">pub</span>
+            </div>
+            <div class="sidebar-section">Chains</div>
+            <div class="sidebar-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+              credit-flow
+            </div>
+          </div>
+          <div class="main-area">
+            <div class="rule-header">
+              <div>
+                <div class="rule-title">Loan Eligibility</div>
+                <div class="rule-alias">alias: loan-eligibility &nbsp;·&nbsp; strategy: FIRST &nbsp;·&nbsp; <span style="color:var(--amber)">draft</span></div>
+              </div>
+              <div class="rule-actions">
+                <button class="btn-sm btn-test">Test bench</button>
+                <button class="btn-sm btn-pub" id="pub-btn" onclick="goStep(2)">Publish</button>
+              </div>
+            </div>
+            <table class="rule-table" id="rule-table">
+              <thead>
+                <tr>
+                  <th style="width:32px">#</th>
+                  <th class="cond-hdr">CONDITION — credit_score</th>
+                  <th class="cond-hdr">CONDITION — employment</th>
+                  <th class="cond-hdr">CONDITION — amount</th>
+                  <th class="res-hdr">RESULT — decision</th>
+                  <th class="res-hdr">RESULT — rate</th>
+                </tr>
+              </thead>
+              <tbody id="table-body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: TEST -->
+      <div class="panel" id="panel-1">
+        <div class="app-layout">
+          <div class="sidebar">
+            <div class="sidebar-section">Rules</div>
+            <div class="sidebar-item active">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              loan-eligibility
+              <span class="badge badge-draft">draft</span>
+            </div>
+            <div class="sidebar-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              shipping-cost
+              <span class="badge badge-pub">pub</span>
+            </div>
+          </div>
+          <div class="main-area">
+            <div class="rule-header">
+              <div>
+                <div class="rule-title">Loan Eligibility — Test Bench</div>
+                <div class="rule-alias">Testing draft version before publishing</div>
+              </div>
+            </div>
+            <table class="rule-table">
+              <thead>
+                <tr>
+                  <th style="width:32px">#</th>
+                  <th class="cond-hdr">CONDITION — credit_score</th>
+                  <th class="cond-hdr">CONDITION — employment</th>
+                  <th class="cond-hdr">CONDITION — amount</th>
+                  <th class="res-hdr">RESULT — decision</th>
+                  <th class="res-hdr">RESULT — rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr id="tb-row-1"><td class="row-num">1</td><td><span class="op-badge">≥</span> 700</td><td><span class="op-badge">=</span> employed</td><td><span class="op-badge">≤</span> 25000</td><td class="res-val">approved</td><td class="res-val">6.9%</td></tr>
+                <tr id="tb-row-2"><td class="row-num">2</td><td><span class="op-badge">≥</span> 600</td><td><span class="op-badge">=</span> employed</td><td><span class="op-badge">≤</span> 15000</td><td class="res-val">approved</td><td class="res-val">9.9%</td></tr>
+                <tr id="tb-row-3"><td class="row-num">3</td><td><span class="op-badge">ANY</span></td><td><span class="op-badge">ANY</span></td><td><span class="op-badge">ANY</span></td><td class="res-val" style="color:var(--red)">declined</td><td class="res-val" style="color:var(--muted)">—</td></tr>
+              </tbody>
+            </table>
+            <div class="testbench">
+              <div class="tb-header">Test bench — enter values and run</div>
+              <div class="tb-inputs">
+                <div class="tb-field">
+                  <label>credit_score</label>
+                  <input type="text" id="tb-score" value="" placeholder="e.g. 720" />
+                </div>
+                <div class="tb-field">
+                  <label>employment</label>
+                  <input type="text" id="tb-emp" value="" placeholder="employed / self" />
+                </div>
+                <div class="tb-field">
+                  <label>amount</label>
+                  <input type="text" id="tb-amount" value="" placeholder="e.g. 12000" />
+                </div>
+              </div>
+              <div class="tb-result" id="tb-result">
+                <div class="tb-badge">✓ MATCHED row 1</div>
+                <div><span class="t-key">"decision"</span><span class="t-muted">: </span><span class="t-val">"approved"</span></div>
+                <div><span class="t-key">"rate"</span><span class="t-muted">: </span><span class="t-val">"6.9%"</span></div>
+                <div><span class="t-key">"matched_row"</span><span class="t-muted">: </span><span class="t-num">1</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: PUBLISH -->
+      <div class="panel" id="panel-2">
+        <div class="app-layout">
+          <div class="sidebar">
+            <div class="sidebar-section">Rules</div>
+            <div class="sidebar-item active">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              loan-eligibility
+              <span class="badge badge-pub" id="pub-badge">pub</span>
+            </div>
+            <div class="sidebar-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+              shipping-cost
+              <span class="badge badge-pub">pub</span>
+            </div>
+          </div>
+          <div class="main-area">
+            <div class="rule-header">
+              <div>
+                <div class="rule-title">Loan Eligibility</div>
+                <div class="rule-alias" id="pub-alias">alias: loan-eligibility &nbsp;·&nbsp; <span style="color:var(--green)" id="pub-status">published &nbsp;·&nbsp; v1</span></div>
+              </div>
+              <div class="rule-actions">
+                <div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);padding:6px 14px;border-radius:5px;font-size:12px;color:var(--green);font-family:var(--mono);" id="pub-confirm">✓ Published — v1 is now live</div>
+              </div>
+            </div>
+            <table class="rule-table">
+              <thead>
+                <tr>
+                  <th style="width:32px">#</th>
+                  <th class="cond-hdr">CONDITION — credit_score</th>
+                  <th class="cond-hdr">CONDITION — employment</th>
+                  <th class="cond-hdr">CONDITION — amount</th>
+                  <th class="res-hdr">RESULT — decision</th>
+                  <th class="res-hdr">RESULT — rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="row-num">1</td><td><span class="op-badge">≥</span> 700</td><td><span class="op-badge">=</span> employed</td><td><span class="op-badge">≤</span> 25000</td><td class="res-val">approved</td><td class="res-val">6.9%</td></tr>
+                <tr><td class="row-num">2</td><td><span class="op-badge">≥</span> 600</td><td><span class="op-badge">=</span> employed</td><td><span class="op-badge">≤</span> 15000</td><td class="res-val">approved</td><td class="res-val">9.9%</td></tr>
+                <tr class="else-row"><td class="row-num">3</td><td colspan="3" style="color:var(--muted);font-style:italic;">ELSE — fallback row</td><td class="res-val" style="color:var(--red)">declined</td><td class="res-val" style="color:var(--muted)">—</td></tr>
+              </tbody>
+            </table>
+            <div style="margin-top:16px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:14px;">
+              <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;">Version history</div>
+              <div style="display:flex;gap:12px;align-items:center;font-size:12px;"><span style="font-family:var(--mono);color:var(--green);">v1</span><span style="color:var(--dimwhite);">Published now</span><span style="color:var(--muted);font-family:var(--mono);font-size:10px;">3 rows · FIRST strategy</span><span style="background:rgba(34,197,94,.1);color:var(--green);font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:3px;margin-left:auto;">LIVE</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: API -->
+      <div class="panel" id="panel-3">
+        <div class="main-area" style="padding:24px;">
+          <div class="rule-header">
+            <div>
+              <div class="rule-title">Live API — loan-eligibility</div>
+              <div class="rule-alias">Your system calls the rule and gets a decision back in milliseconds</div>
+            </div>
+          </div>
+          <div class="api-split">
+            <div class="api-panel">
+              <div class="api-panel-hdr">
+                <span class="method post">POST</span>
+                <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">/api/solve/loan-eligibility</span>
+              </div>
+              <div class="api-body">
+                <div><span class="t-muted">// Your system sends</span></div>
+                <div><span class="t-muted">{</span></div>
+                <div>&nbsp;&nbsp;<span class="t-key">"data"</span><span class="t-muted">: {</span></div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"credit_score"</span><span class="t-muted">: </span><span class="t-num" id="api-score">720</span><span class="t-muted">,</span></div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"employment"</span><span class="t-muted">: </span><span class="t-str">"employed"</span><span class="t-muted">,</span></div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"amount"</span><span class="t-muted">: </span><span class="t-num">12000</span></div>
+                <div>&nbsp;&nbsp;<span class="t-muted">}</span></div>
+                <div><span class="t-muted">}</span></div>
+              </div>
+            </div>
+            <div class="api-panel">
+              <div class="api-panel-hdr">
+                <span class="method" style="background:rgba(34,197,94,.15);color:var(--green);">200 OK</span>
+                <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">matched row 1 · <span id="api-time">1.4ms</span></span>
+              </div>
+              <div class="api-body api-response" id="api-response">
+                <div><span class="t-muted">{</span></div>
+                <div>&nbsp;&nbsp;<span class="t-key">"results"</span><span class="t-muted">: [{</span></div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"decision"</span><span class="t-muted">: </span><span class="t-val">"approved"</span><span class="t-muted">,</span></div>
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-key">"rate"</span><span class="t-muted">: </span><span class="t-val">"6.9%"</span></div>
+                <div>&nbsp;&nbsp;<span class="t-muted">}],</span></div>
+                <div>&nbsp;&nbsp;<span class="t-key">"version"</span><span class="t-muted">: </span><span class="t-num">1</span><span class="t-muted">,</span></div>
+                <div>&nbsp;&nbsp;<span class="t-key">"matched"</span><span class="t-muted">: </span><span class="t-val">true</span></div>
+                <div><span class="t-muted">}</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:24px;flex-wrap:wrap;">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;flex:1;min-width:160px;text-align:center;">
+              <div style="font-size:28px;font-weight:700;color:var(--accent2);line-height:1;">&lt;2ms</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px;">Response time</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;flex:1;min-width:160px;text-align:center;">
+              <div style="font-size:28px;font-weight:700;color:var(--green);line-height:1;">v1</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px;">Rule version used</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;flex:1;min-width:160px;text-align:center;">
+              <div style="font-size:28px;font-weight:700;color:var(--white);line-height:1;">✓</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px;">Logged in audit trail</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 20px;flex:1;min-width:160px;text-align:center;">
+              <div style="font-size:28px;font-weight:700;color:var(--amber);line-height:1;">0</div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px;">Code changes needed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /screen -->
+
+    <div class="controls">
+      <button class="ctrl-btn" id="play-btn" onclick="toggleAutoplay()">▶ &nbsp;Auto-play</button>
+      <button class="ctrl-btn" onclick="prevStep()">← Previous</button>
+      <button class="ctrl-btn ctrl-next" onclick="nextStep()">Next →</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="demo-cta">
+  <h2>Ready to build your first<br><em>decision rule?</em></h2>
+  <p>Deploy in under 10 minutes. One licence, your server, no ongoing costs.</p>
+  <a href="/#pricing" class="btn">Get Ruledeck — €499 →</a>
+</section>
+
+<script>
+const narratives = [
+  { h: "Define your logic as a table", p: "Add condition columns for your inputs and result columns for your outputs. Each row is one rule, evaluated top to bottom." },
+  { h: "Test before going live", p: "Use the built-in test bench to run real inputs against your rule. See exactly which row matched and why — before publishing." },
+  { h: "Publish with one click", p: "When you're satisfied, press Publish. Ruledeck creates a live REST API endpoint instantly. Every version is saved and rollback-ready." },
+  { h: "Your system calls the API", p: "Any system that makes an HTTP request can call your rule. Send inputs, get a decision back in under 2ms. Zero code changes to deploy updates." }
+];
+
+const rows = [
+  { n: 1, cond1: "≥ 700", cond2: "= employed", cond3: "≤ 25000", res1: "approved", res2: "6.9%", hl: false },
+  { n: 2, cond1: "≥ 600", cond2: "= employed", cond3: "≤ 15000", res1: "approved", res2: "9.9%", hl: false },
+  { n: 3, cond1: "ANY", cond2: "ANY", cond3: "ANY", res1: "declined", res2: "—", hl: false, isElse: true }
+];
+
+let currentStep = 0;
+let autoplay = false;
+let autoTimer = null;
+let buildPhase = 0;
+let buildTimer = null;
+
+function updateNarrative(step) {
+  const n = narratives[step];
+  document.getElementById('narrative').innerHTML = `<h3>${n.h}</h3><p>${n.p}</p>`;
+}
+
+function updateProgress(step) {
+  document.getElementById('progress').style.width = ((step + 1) / 4 * 100) + '%';
+}
+
+function updatePills(step) {
+  for (let i = 0; i < 4; i++) {
+    const p = document.getElementById('pill-' + i);
+    p.classList.remove('active', 'done');
+    if (i < step) p.classList.add('done');
+    if (i === step) p.classList.add('active');
+    const num = p.querySelector('.step-num');
+    if (i < step) num.textContent = '✓';
+    else num.textContent = i + 1;
+  }
+}
+
+function goStep(step) {
+  document.getElementById('panel-' + currentStep).classList.remove('active');
+  currentStep = step;
+  document.getElementById('panel-' + step).classList.add('active');
+  updateNarrative(step);
+  updateProgress(step);
+  updatePills(step);
+
+  if (step === 0) startBuildAnimation();
+  if (step === 1) startTestAnimation();
+  if (step === 3) startApiAnimation();
+}
+
+function nextStep() {
+  if (currentStep < 3) goStep(currentStep + 1);
+  else goStep(0);
+}
+
+function prevStep() {
+  if (currentStep > 0) goStep(currentStep - 1);
+}
+
+// BUILD ANIMATION
+function startBuildAnimation() {
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  buildPhase = 0;
+  clearTimeout(buildTimer);
+  animateBuild();
+}
+
+function animateBuild() {
+  const tbody = document.getElementById('table-body');
+  if (buildPhase < rows.length) {
+    const r = rows[buildPhase];
+    const tr = document.createElement('tr');
+    if (r.isElse) tr.className = 'else-row';
+    const res1Color = r.res1 === 'declined' ? 'var(--red)' : 'var(--green)';
+    const res2Color = r.res2 === '—' ? 'var(--muted)' : 'var(--green)';
+    tr.innerHTML = `
+      <td class="row-num">${r.n}</td>
+      <td><span class="op-badge">${r.cond1.split(' ')[0]}</span> ${r.cond1.includes(' ') ? r.cond1.split(' ').slice(1).join(' ') : ''}</td>
+      <td><span class="op-badge">${r.cond2.split(' ')[0]}</span> ${r.cond2.includes(' ') ? r.cond2.split(' ').slice(1).join(' ') : ''}</td>
+      <td><span class="op-badge">${r.cond3.split(' ')[0]}</span> ${r.cond3.includes(' ') ? r.cond3.split(' ').slice(1).join(' ') : ''}</td>
+      <td class="res-val" style="color:${res1Color}">${r.res1}</td>
+      <td class="res-val" style="color:${res2Color}">${r.res2}</td>`;
+    tr.style.opacity = '0';
+    tr.style.transform = 'translateY(6px)';
+    tr.style.transition = 'all .3s ease';
+    tbody.appendChild(tr);
+    requestAnimationFrame(() => {
+      tr.style.opacity = '1';
+      tr.style.transform = 'translateY(0)';
+    });
+    buildPhase++;
+    buildTimer = setTimeout(animateBuild, 600);
+  }
+}
+
+// TEST ANIMATION
+function startTestAnimation() {
+  document.getElementById('tb-score').value = '';
+  document.getElementById('tb-emp').value = '';
+  document.getElementById('tb-amount').value = '';
+  document.getElementById('tb-result').classList.remove('matched');
+  document.getElementById('tb-row-1').classList.remove('highlighted');
+
+  let phase = 0;
+  function typeNext() {
+    if (phase === 0) {
+      typeValue('tb-score', '720', () => { phase = 1; setTimeout(typeNext, 300); });
+    } else if (phase === 1) {
+      typeValue('tb-emp', 'employed', () => { phase = 2; setTimeout(typeNext, 300); });
+    } else if (phase === 2) {
+      typeValue('tb-amount', '12000', () => { phase = 3; setTimeout(typeNext, 500); });
+    } else if (phase === 3) {
+      document.getElementById('tb-row-1').classList.add('highlighted');
+      setTimeout(() => {
+        document.getElementById('tb-result').classList.add('matched');
+      }, 400);
+    }
+  }
+  setTimeout(typeNext, 800);
+}
+
+function typeValue(id, value, cb) {
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  let i = 0;
+  function type() {
+    if (i <= value.length) {
+      el.value = value.substring(0, i);
+      i++;
+      setTimeout(type, 60);
+    } else {
+      el.classList.remove('active');
+      if (cb) cb();
+    }
+  }
+  type();
+}
+
+// API ANIMATION
+function startApiAnimation() {
+  const res = document.getElementById('api-response');
+  res.classList.remove('visible');
+  setTimeout(() => res.classList.add('visible'), 800);
+}
+
+// AUTOPLAY
+function startAutoplay() {
+  goStep(0);
+  autoplay = true;
+  document.getElementById('play-btn').classList.add('playing');
+  document.getElementById('play-btn').textContent = '⏸  Auto-playing';
+  scheduleNext();
+}
+
+function toggleAutoplay() {
+  if (autoplay) {
+    autoplay = false;
+    clearTimeout(autoTimer);
+    document.getElementById('play-btn').classList.remove('playing');
+    document.getElementById('play-btn').textContent = '▶  Auto-play';
+  } else {
+    startAutoplay();
+  }
+}
+
+function scheduleNext() {
+  if (!autoplay) return;
+  const delays = [3500, 4000, 3000, 4000];
+  autoTimer = setTimeout(() => {
+    if (currentStep < 3) {
+      goStep(currentStep + 1);
+      scheduleNext();
+    } else {
+      goStep(0);
+      scheduleNext();
+    }
+  }, delays[currentStep]);
+}
+
+// Init
+startBuildAnimation();
+</script>
+</body>
+</html>
