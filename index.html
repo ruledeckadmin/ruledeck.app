@@ -235,7 +235,7 @@
 
   /* HOW IT WORKS */
   #how { padding: 100px 0; }
-  .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 60px; }
+  .steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; margin-top: 60px; }
   .step {
     background: var(--surface); padding: 36px 28px;
     border: 1px solid var(--border); position: relative; transition: border-color .3s;
@@ -643,27 +643,32 @@
 <section id="how">
   <div class="container">
     <p class="section-eyebrow">How it works</p>
-    <h2>Four steps.<br><em>Up and running today.</em></h2>
+    <h2>Five steps.<br><em>Up and running today.</em></h2>
     <div class="steps">
       <div class="step step-it">
         <span class="step-num">STEP 01 &middot; IT</span>
         <h3>Deploy in under 10 minutes</h3>
-        <p>Your IT team runs two commands: create a <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">.env</code> file with your credentials and <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">docker compose up</code>. Ruledeck starts, validates the licence, and is accessible in your browser. No build steps, no dependencies to install.</p>
+        <p>Create a <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">.env</code> file with your credentials and run <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">docker compose up</code>. Ruledeck starts, validates the licence, and is accessible in the browser. No build steps, no dependencies to install.</p>
       </div>
-      <div class="step">
-        <span class="step-num">STEP 02 &middot; BUSINESS</span>
-        <h3>Define your logic as a table</h3>
-        <p>Open Ruledeck in any browser. Add condition columns for the inputs your decision depends on &mdash; a customer tier, an order value, a risk score, a product type. Add result columns for what you want back. Each row is one rule. No formulas, no code, no IT ticket.</p>
+      <div class="step step-it">
+        <span class="step-num">STEP 02 &middot; IT</span>
+        <h3>Connect your data pipeline</h3>
+        <p>Agree field names with the business team &mdash; the inputs your rules will use (scores, flags, amounts, regions) and the outputs you want back. Wire up a single API call from your existing system. Done once. The business team builds and changes rules from here without touching the integration again.</p>
       </div>
       <div class="step">
         <span class="step-num">STEP 03 &middot; BUSINESS</span>
-        <h3>Test, then publish with one click</h3>
-        <p>Use the built-in testbench to run your rule against real inputs before going live. Debug mode shows exactly which row matched and why. When satisfied, press Publish. Ruledeck instantly creates a live REST API endpoint. Roll back any prior version in seconds.</p>
+        <h3>Build your rule as a table</h3>
+        <p>Open Ruledeck in any browser. Add condition columns matching the agreed input fields. Add result columns for what you want back. Each row is one rule, evaluated top to bottom. No code, no formulas, no IT ticket.</p>
       </div>
       <div class="step">
         <span class="step-num">STEP 04 &middot; BUSINESS</span>
+        <h3>Test, then publish</h3>
+        <p>Use the built-in testbench to run real inputs against your rule before going live. Debug mode shows exactly which row matched and why. Press Publish when satisfied. Ruledeck creates a live API endpoint instantly. Roll back any prior version in seconds.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">STEP 05 &middot; BUSINESS</span>
         <h3>Iterate without engineering</h3>
-        <p>Policy changed? New tier to add? Threshold to tighten? Open the rule in your test environment, edit the table, verify in the testbench, and publish. The update is live in seconds. Every change is logged in the audit trail.</p>
+        <p>Policy changed? New tier? Threshold to tighten? Edit the table, verify in the testbench, publish. Live in seconds. Every change is logged in the audit trail with a timestamp.</p>
       </div>
     </div>
   </div>
