@@ -516,7 +516,7 @@
     <a href="/demo">Demo</a>
     <a href="/faq">FAQ</a>
     <a href="#pricing">Pricing</a>
-    <a href="mailto:hello@ruledeck.app" class="nav-cta">Get in touch &rarr;</a>
+    <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1c3c4ddd4d5d4d2da9fd0c1c1" class="nav-cta">Get in touch &rarr;</a>
   </div>
 </nav>
 
@@ -672,45 +672,59 @@
       <div>
         <p class="section-eyebrow">The decision loop</p>
         <h2>Input goes in.<br><em>Decision comes out.</em></h2>
-        <p class="section-sub" style="margin-bottom:28px;">Any system that can make an HTTP request can call your rules &mdash; a mobile app, a backend service, an internal portal, or a data pipeline.</p>
-        <p style="font-size:14px;color:var(--muted);line-height:1.7;">No pre-defined schemas. Your input fields are whatever your rules need &mdash; customer segments, order values, risk scores, country codes, product types.</p>
-        <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Works with any system that can make an HTTP request</div>
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Chain multiple rules together for multi-step decisions</div>
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Every call is logged with input, output, and response time</div>
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Debug mode exposes which row matched and why</div>
+        <p class="section-sub" style="margin-bottom:20px;">Your existing system sends a JSON request with named fields. Ruledeck matches those fields against your rule table and returns the result. The field names in the request need to match the condition columns in your rule &mdash; that is a one-time agreement between IT and the business team.</p>
+        <p style="font-size:14px;color:var(--dimwhite);line-height:1.7;margin-bottom:16px;">IT connects the data pipeline once: decide which fields to send, wire up the API call, and define what to do with the output. After that the business owns the logic entirely &mdash; adding rows, changing thresholds, adjusting outputs &mdash; without touching the integration again.</p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;">The output fields are whatever your rule returns. Your system reads them by name and does whatever makes sense: route the customer, store the offer, trigger the next step in the pipeline.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Any system that makes an HTTP request can call a rule</div>
+          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Field names in the request map directly to condition columns in the table</div>
+          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Output fields come back by name &mdash; your system reads what it needs</div>
+          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Every call is logged with input, output, matched row, and response time</div>
         </div>
       </div>
       <div class="io-flow">
         <div class="io-block">
-          <div class="io-block-header"><span>Your system sends</span><span class="badge">INPUT</span></div>
+          <div class="io-block-header"><span>Your pipeline sends 6 fields</span><span class="badge">INPUT</span></div>
           <div class="io-block-body">
             <div><span class="t-op">{</span></div>
-            <div>&nbsp; <span class="t-key">"customer_segment"</span><span class="t-op">:</span> <span class="t-str">"premium"</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"loan_amount"</span><span class="t-op">:</span> <span class="t-num">15000</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"debt_ratio"</span><span class="t-op">:</span> <span class="t-num">0.28</span></div>
+            <div>&nbsp; <span class="t-key">"credit_score"</span><span class="t-op">:</span> <span class="t-num">720</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"fraud_flag"</span><span class="t-op">:</span> <span class="t-val">false</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"monthly_income"</span><span class="t-op">:</span> <span class="t-num">3200</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"requested_amount"</span><span class="t-op">:</span> <span class="t-num">12000</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"region"</span><span class="t-op">:</span> <span class="t-str">"EU"</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"bureau_hits"</span><span class="t-op">:</span> <span class="t-num">0</span></div>
             <div><span class="t-op">}</span></div>
           </div>
         </div>
         <div class="io-arrow">RULEDECK EVALUATES</div>
-        <div class="io-rule-box">
-          <div class="rule-label">loan-pricing &middot; v4 &middot; published</div>
-          <table class="io-rule-table">
-            <tr><th>segment</th><th>amount</th><th>debt_ratio</th><th>&rarr; rate</th></tr>
-            <tr><td>any</td><td>&gt;20k</td><td>any</td><td>14.9%</td></tr>
-            <tr class="active-row"><td class="match">premium</td><td class="match">&le;20k</td><td class="match">&le;0.30</td><td class="match">6.5%</td></tr>
-            <tr><td>standard</td><td>&le;20k</td><td>any</td><td>9.9%</td></tr>
-            <tr><td colspan="3" style="color:var(--muted)">ELSE</td><td>19.9%</td></tr>
+        <div class="io-rule-box" style="overflow-x:auto;">
+          <div class="rule-label">loan-offer &middot; v3 &middot; published &middot; 5 rows</div>
+          <table class="io-rule-table" style="min-width:600px;font-size:10px;">
+            <tr>
+              <th>credit_score</th><th>fraud_flag</th><th>income</th><th>amount</th><th>region</th><th>bureau_hits</th>
+              <th style="color:var(--green);">&rarr; decision</th><th style="color:var(--green);">&rarr; approved</th><th style="color:var(--green);">&rarr; rate</th><th style="color:var(--green);">&rarr; tenor</th><th style="color:var(--green);">&rarr; fee</th><th style="color:var(--green);">&rarr; bucket</th>
+            </tr>
+            <tr><td>ANY</td><td>= true</td><td>ANY</td><td>ANY</td><td>ANY</td><td>ANY</td><td style="color:var(--red);">declined</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td></tr>
+            <tr class="active-row">
+              <td class="match">&ge;700</td><td class="match">= false</td><td class="match">&ge;3000</td><td class="match">&le;15000</td><td class="match">EU</td><td class="match">= 0</td>
+              <td class="match">approved</td><td class="match">12000</td><td class="match">7.9%</td><td class="match">36mo</td><td class="match">&euro;0</td><td class="match">A1</td>
+            </tr>
+            <tr><td>&ge;600</td><td>= false</td><td>&ge;2500</td><td>&le;10000</td><td>ANY</td><td>&le;1</td><td>approved</td><td>8000</td><td>11.9%</td><td>24mo</td><td>&euro;25</td><td>B2</td></tr>
+            <tr><td>&ge;500</td><td>= false</td><td>&ge;2000</td><td>&le;5000</td><td>ANY</td><td>&le;2</td><td style="color:var(--amber);">manual</td><td>5000</td><td>16.9%</td><td>12mo</td><td>&euro;50</td><td>C3</td></tr>
+            <tr style="color:var(--muted);font-style:italic;"><td>ELSE</td><td>ELSE</td><td>ELSE</td><td>ELSE</td><td>ELSE</td><td>ELSE</td><td style="color:var(--red);">declined</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
           </table>
         </div>
         <div class="io-arrow">RETURNS IN &lt; 2ms</div>
         <div class="io-block">
-          <div class="io-block-header"><span>Ruledeck returns</span><span class="badge-green">200 OK &middot; MATCHED</span></div>
+          <div class="io-block-header"><span>Ruledeck returns 6 output fields</span><span class="badge-green">200 OK &middot; MATCHED row 2</span></div>
           <div class="io-block-body">
             <div><span class="t-op">{</span></div>
-            <div>&nbsp; <span class="t-key">"rate"</span><span class="t-op">:</span> <span class="t-num">6.5</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"version"</span><span class="t-op">:</span> <span class="t-num">4</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"matched"</span><span class="t-op">:</span> <span class="t-val">true</span></div>
+            <div>&nbsp; <span class="t-key">"decision"</span><span class="t-op">:</span> <span class="t-val">"approved"</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"approved_amount"</span><span class="t-op">:</span> <span class="t-num">12000</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"rate"</span><span class="t-op">:</span> <span class="t-str">"7.9%"</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"tenor"</span><span class="t-op">:</span> <span class="t-str">"36mo"</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"fee"</span><span class="t-op">:</span> <span class="t-str">"&euro;0"</span><span class="t-op">,</span></div>
+            <div>&nbsp; <span class="t-key">"collection_bucket"</span><span class="t-op">:</span> <span class="t-str">"A1"</span></div>
             <div><span class="t-op">}</span></div>
           </div>
         </div>
@@ -1107,7 +1121,7 @@
           </ul>
         </div>
         <a href="#" class="price-cta">Buy now &mdash; &euro;499 &rarr;</a>
-        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="mailto:hello@ruledeck.app"><span class="__cf_email__" data-cfemail="fe969b929291be8c8b929b9a9b9d95d09f8e8e">[email&#160;protected]</span></a></p>
+        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="/cdn-cgi/l/email-protection#09616c656566497b7c656c6d6c6a6227687979"><span class="__cf_email__" data-cfemail="fe969b929291be8c8b929b9a9b9d95d09f8e8e">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -1121,7 +1135,7 @@
       <p>Five decisions a month or five million &mdash; Ruledeck handles it. One licence, your server, no ongoing costs.</p>
       <div class="cta-actions">
         <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-        <a href="mailto:hello@ruledeck.app">Ask a question</a>
+        <a href="/cdn-cgi/l/email-protection#375f525b5b587745425b525352545c19564747">Ask a question</a>
       </div>
     </div>
   </div>
@@ -1140,12 +1154,12 @@
     <a href="#pricing">Pricing</a>
     <a href="/terms">Terms</a>
     <a href="/privacy">Privacy</a>
-    <a href="mailto:hello@ruledeck.app">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#325a575e5e5d7240475e57565751591c534242">Contact</a>
   </div>
-  <div>&copy; 2026 MSBit O&Uuml;. All rights reserved.</div>
+  <div>&copy; 2026 MSBit O&Uuml;</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
