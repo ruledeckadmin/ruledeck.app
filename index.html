@@ -523,7 +523,7 @@
     <a href="/demo">Demo</a>
     <a href="/faq">FAQ</a>
     <a href="#pricing">Pricing</a>
-    <a href="mailto:hello@ruledeck.app" class="nav-cta">Get in touch &rarr;</a>
+    <a href="/cdn-cgi/l/email-protection#ddb5b8b1b1b29dafa8b1b8b9b8beb6f3bcadad" class="nav-cta">Get in touch &rarr;</a>
   </div>
 </nav>
 
@@ -614,8 +614,8 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <h4>Built to be maintained</h4>
-            <p>Test coverage across engine logic, API behaviour, security defaults and performance under load. Documentation ships with the product. This was not built to be abandoned on day three.</p>
+            <h4>Built to last</h4>
+            <p>Test coverage across engine logic, API behaviour, security defaults, and performance under load. Full documentation ships with the product. Bugs get fixed. This is a maintained product, not a launch-and-forget release.</p>
           </div>
         </div>
         <div class="trust-item">
@@ -1141,7 +1141,7 @@
           </ul>
         </div>
         <a href="#" class="price-cta">Buy now &mdash; &euro;499 &rarr;</a>
-        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="mailto:hello@ruledeck.app">hello@ruledeck.app</a></p>
+        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3ccfef9e0e9e8e9efe7a2edfcfc"><span class="__cf_email__" data-cfemail="c0a8a5acacaf80b2b5aca5a4a5a3abeea1b0b0">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -1155,7 +1155,7 @@
       <p>One licence. Deploy today. No subscriptions, no usage limits, no recurring costs.</p>
       <div class="cta-actions">
         <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-        <a href="mailto:hello@ruledeck.app">Ask a question</a>
+        <a href="/cdn-cgi/l/email-protection#1179747d7d7e5163647d747574727a3f706161">Ask a question</a>
       </div>
     </div>
   </div>
@@ -1174,12 +1174,12 @@
     <a href="#pricing">Pricing</a>
     <a href="/terms">Terms</a>
     <a href="/privacy">Privacy</a>
-    <a href="mailto:hello@ruledeck.app">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#80e8e5ececefc0f2f5ece5e4e5e3ebaee1f0f0">Contact</a>
   </div>
   <div>&copy; 2026 MSBit O&Uuml;</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
@@ -1228,6 +1228,12 @@ function runDemo() {
   if (matched !== null) {
     resultEl.className = 'demo-result matched';
     resultEl.innerHTML = '<span style="color:var(--green);font-family:var(--mono);font-size:10px;letter-spacing:.06em;">&#10003; MATCHED row ' + matchedRow + '</span><br><br><span style="color:var(--accent2);">&quot;result&quot;</span><span style="color:var(--muted);">: </span><span style="color:#86EFAC;">&quot;' + matched + '&quot;</span>';
- 
+  } else {
+    resultEl.className = 'demo-result no-match';
+    resultEl.innerHTML = '<span style="color:#EF4444;font-family:var(--mono);font-size:10px;letter-spacing:.06em;">&#10007; NO MATCH</span><br><br><span style="color:var(--muted);font-size:13px;">No row matched. Add a row with * for both conditions as a fallback.</span>';
+  }
+}
+</script>
+
 </body>
 </html>
