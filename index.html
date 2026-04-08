@@ -235,7 +235,10 @@
 
   /* HOW IT WORKS */
   #how { padding: 100px 0; }
-  .steps { display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; margin-top: 60px; }
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 60px; }
+  .steps .step-it { grid-column: span 1; }
+  .steps-it-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px; margin-bottom: 2px; }
+  .steps-biz-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
   .step {
     background: var(--surface); padding: 36px 28px;
     border: 1px solid var(--border); position: relative; transition: border-color .3s;
@@ -543,24 +546,23 @@
       <div class="hero-visual fade-up fade-up-3">
         <div class="terminal-bar">
           <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-          <div class="terminal-url">POST /api/solve/loan-eligibility</div>
+          <div class="terminal-url">POST /api/solve/discount-rules</div>
         </div>
         <div class="terminal-body">
           <div class="t-comment">// Send your data</div>
           <div><span class="t-op">{</span></div>
-          <div>&nbsp; <span class="t-key">"credit_score"</span><span class="t-op">:</span> <span class="t-num">720</span><span class="t-op">,</span></div>
-          <div>&nbsp; <span class="t-key">"monthly_income"</span><span class="t-op">:</span> <span class="t-num">4500</span><span class="t-op">,</span></div>
-          <div>&nbsp; <span class="t-key">"requested_amount"</span><span class="t-op">:</span> <span class="t-num">12000</span><span class="t-op">,</span></div>
-          <div>&nbsp; <span class="t-key">"employment_status"</span><span class="t-op">:</span> <span class="t-str">"employed"</span></div>
+          <div>&nbsp; <span class="t-key">"customer_tier"</span><span class="t-op">:</span> <span class="t-str">"gold"</span><span class="t-op">,</span></div>
+          <div>&nbsp; <span class="t-key">"order_value"</span><span class="t-op">:</span> <span class="t-num">340</span><span class="t-op">,</span></div>
+          <div>&nbsp; <span class="t-key">"region"</span><span class="t-op">:</span> <span class="t-str">"EU"</span><span class="t-op">,</span></div>
+          <div>&nbsp; <span class="t-key">"first_order"</span><span class="t-op">:</span> <span class="t-val">false</span></div>
           <div><span class="t-op">}</span></div>
           <br>
           <div class="t-comment">// Get your decision &middot; 1.4 ms</div>
           <div class="t-result">
             <div class="t-badge">200 OK &middot; MATCHED</div>
-            <div><span class="t-key">"decision"</span><span class="t-op">:</span> <span class="t-val">"approved"</span></div>
-            <div><span class="t-key">"approved_amount"</span><span class="t-op">:</span> <span class="t-num">12000</span></div>
-            <div><span class="t-key">"interest_rate"</span><span class="t-op">:</span> <span class="t-num">8.9</span></div>
-            <div><span class="t-key">"term_months"</span><span class="t-op">:</span> <span class="t-num">36</span></div>
+            <div><span class="t-key">"discount"</span><span class="t-op">:</span> <span class="t-val">"15%"</span></div>
+            <div><span class="t-key">"shipping"</span><span class="t-op">:</span> <span class="t-val">"free"</span></div>
+            <div><span class="t-key">"campaign"</span><span class="t-op">:</span> <span class="t-str">"loyalty-q2"</span></div>
           </div>
           <div style="margin-top:10px;font-size:11px;color:#4B6A88;"><span class="cursor">&#9612;</span></div>
         </div>
@@ -644,31 +646,33 @@
   <div class="container">
     <p class="section-eyebrow">How it works</p>
     <h2>Five steps.<br><em>Up and running today.</em></h2>
-    <div class="steps">
-      <div class="step step-it">
+    <div class="steps-it-row">
+      <div class="step step-it" style="border-radius:10px 0 0 10px;">
         <span class="step-num">STEP 01 &middot; IT</span>
         <h3>Deploy in under 10 minutes</h3>
         <p>Create a <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">.env</code> file with your credentials and run <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">docker compose up</code>. Ruledeck starts, validates the licence, and is accessible in the browser. No build steps, no dependencies to install.</p>
       </div>
-      <div class="step step-it">
+      <div class="step step-it" style="border-radius:0 10px 10px 0;">
         <span class="step-num">STEP 02 &middot; IT</span>
-        <h3>Connect your data pipeline</h3>
-        <p>Agree field names with the business team &mdash; the inputs your rules will use (scores, flags, amounts, regions) and the outputs you want back. Wire up a single API call from your existing system. Done once. The business team builds and changes rules from here without touching the integration again.</p>
+        <h3>Connect your system once</h3>
+        <p>Agree on field names with the business team &mdash; what data goes in and what comes back. Wire up a single API call from your existing system. That is the full integration. The business team owns everything from this point without touching the code again.</p>
       </div>
-      <div class="step">
+    </div>
+    <div class="steps-biz-row">
+      <div class="step" style="border-radius:10px 0 0 10px;">
         <span class="step-num">STEP 03 &middot; BUSINESS</span>
-        <h3>Build your rule as a table</h3>
-        <p>Open Ruledeck in any browser. Add condition columns matching the agreed input fields. Add result columns for what you want back. Each row is one rule, evaluated top to bottom. No code, no formulas, no IT ticket.</p>
+        <h3>Build your logic as a table</h3>
+        <p>Open Ruledeck in any browser. Add condition columns for the inputs your decision depends on &mdash; a customer category, an order value, a risk score, a product type, a region. Add result columns for what you want back. Each row is one rule. No code, no formulas, no IT ticket.</p>
       </div>
       <div class="step">
         <span class="step-num">STEP 04 &middot; BUSINESS</span>
         <h3>Test, then publish</h3>
-        <p>Use the built-in testbench to run real inputs against your rule before going live. Debug mode shows exactly which row matched and why. Press Publish when satisfied. Ruledeck creates a live API endpoint instantly. Roll back any prior version in seconds.</p>
+        <p>Use the built-in testbench to run real inputs before going live. Debug mode shows exactly which row matched and why. Press Publish. Ruledeck creates a live API endpoint instantly. Every published version is saved &mdash; roll back in seconds if needed.</p>
       </div>
-      <div class="step">
+      <div class="step" style="border-radius:0 10px 10px 0;">
         <span class="step-num">STEP 05 &middot; BUSINESS</span>
         <h3>Iterate without engineering</h3>
-        <p>Policy changed? New tier? Threshold to tighten? Edit the table, verify in the testbench, publish. Live in seconds. Every change is logged in the audit trail with a timestamp.</p>
+        <p>Policy changed? New category to add? Threshold to adjust? Edit the table, verify in the testbench, publish. The update is live in seconds. Every change is logged with a timestamp &mdash; suitable for compliance evidence.</p>
       </div>
     </div>
   </div>
@@ -677,70 +681,182 @@
 <!-- IO -->
 <section id="io">
   <div class="container">
-    <div class="io-inner">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+    <p class="section-eyebrow">The decision loop</p>
+    <h2>Input goes in.<br><em>Decision comes out.</em></h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:48px;">
       <div>
-        <p class="section-eyebrow">The decision loop</p>
-        <h2>Input goes in.<br><em>Decision comes out.</em></h2>
         <p class="section-sub" style="margin-bottom:20px;">Your existing system sends a JSON request with named fields. Ruledeck matches those fields against your rule table and returns the result. The field names in the request need to match the condition columns in your rule &mdash; that is a one-time agreement between IT and the business team.</p>
-        <p style="font-size:14px;color:var(--dimwhite);line-height:1.7;margin-bottom:16px;">IT connects the data pipeline once: decide which fields to send, wire up the API call, and define what to do with the output. After that the business owns the logic entirely &mdash; adding rows, changing thresholds, adjusting outputs &mdash; without touching the integration again.</p>
-        <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;">The output fields are whatever your rule returns. Your system reads them by name and does whatever makes sense: route the customer, store the offer, trigger the next step in the pipeline.</p>
-        <div style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Any system that makes an HTTP request can call a rule</div>
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Field names in the request map directly to condition columns in the table</div>
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Output fields come back by name &mdash; your system reads what it needs</div>
-          <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Every call is logged with input, output, matched row, and response time</div>
-        </div>
+        <p style="font-size:14px;color:var(--dimwhite);line-height:1.7;margin-bottom:16px;">IT connects the data pipeline once: decide which fields to send, wire up the API call, define what to do with the output. After that the business owns the logic entirely without touching the integration again.</p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.7;">The output fields are whatever your rule returns. Your system reads them by name and does whatever makes sense: route the customer, store the result, trigger the next step.</p>
       </div>
-      </div><!-- /intro grid -->
-      <div class="io-flow">
-        <div class="io-block">
-          <div class="io-block-header"><span>Your pipeline sends 6 fields</span><span class="badge">INPUT</span></div>
-          <div class="io-block-body">
-            <div><span class="t-op">{</span></div>
-            <div>&nbsp; <span class="t-key">"credit_score"</span><span class="t-op">:</span> <span class="t-num">720</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"fraud_flag"</span><span class="t-op">:</span> <span class="t-val">false</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"monthly_income"</span><span class="t-op">:</span> <span class="t-num">3200</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"requested_amount"</span><span class="t-op">:</span> <span class="t-num">12000</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"region"</span><span class="t-op">:</span> <span class="t-str">"EU"</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"bureau_hits"</span><span class="t-op">:</span> <span class="t-num">0</span></div>
-            <div><span class="t-op">}</span></div>
-          </div>
-        </div>
-        <div class="io-arrow">RULEDECK EVALUATES</div>
-        <div class="io-rule-box" style="overflow-x:auto;">
-          <div class="rule-label">loan-offer &middot; v3 &middot; published &middot; 5 rows</div>
-          <table class="io-rule-table" style="min-width:600px;font-size:10px;">
-            <tr>
-              <th>credit_score</th><th>fraud_flag</th><th>income</th><th>amount</th><th>region</th><th>bureau_hits</th>
-              <th style="color:var(--green);">&rarr; decision</th><th style="color:var(--green);">&rarr; approved</th><th style="color:var(--green);">&rarr; rate</th><th style="color:var(--green);">&rarr; tenor</th><th style="color:var(--green);">&rarr; fee</th><th style="color:var(--green);">&rarr; bucket</th>
-            </tr>
-            <tr><td>ANY</td><td>= true</td><td>ANY</td><td>ANY</td><td>ANY</td><td>ANY</td><td style="color:var(--red);">declined</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td><td style="color:var(--muted);">&mdash;</td></tr>
-            <tr class="active-row">
-              <td class="match">&ge;700</td><td class="match">= false</td><td class="match">&ge;3000</td><td class="match">&le;15000</td><td class="match">EU</td><td class="match">= 0</td>
-              <td class="match">approved</td><td class="match">12000</td><td class="match">7.9%</td><td class="match">36mo</td><td class="match">&euro;0</td><td class="match">A1</td>
-            </tr>
-            <tr><td>&ge;600</td><td>= false</td><td>&ge;2500</td><td>&le;10000</td><td>ANY</td><td>&le;1</td><td>approved</td><td>8000</td><td>11.9%</td><td>24mo</td><td>&euro;25</td><td>B2</td></tr>
-            <tr><td>&ge;500</td><td>= false</td><td>&ge;2000</td><td>&le;5000</td><td>ANY</td><td>&le;2</td><td style="color:var(--amber);">manual</td><td>5000</td><td>16.9%</td><td>12mo</td><td>&euro;50</td><td>C3</td></tr>
-            <tr style="color:var(--muted);font-style:italic;"><td>ELSE</td><td>ELSE</td><td>ELSE</td><td>ELSE</td><td>ELSE</td><td>ELSE</td><td style="color:var(--red);">declined</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
-          </table>
-        </div>
-        <div class="io-arrow">RETURNS IN &lt; 2ms</div>
-        <div class="io-block">
-          <div class="io-block-header"><span>Ruledeck returns 6 output fields</span><span class="badge-green">200 OK &middot; MATCHED row 2</span></div>
-          <div class="io-block-body">
-            <div><span class="t-op">{</span></div>
-            <div>&nbsp; <span class="t-key">"decision"</span><span class="t-op">:</span> <span class="t-val">"approved"</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"approved_amount"</span><span class="t-op">:</span> <span class="t-num">12000</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"rate"</span><span class="t-op">:</span> <span class="t-str">"7.9%"</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"tenor"</span><span class="t-op">:</span> <span class="t-str">"36mo"</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"fee"</span><span class="t-op">:</span> <span class="t-str">"&euro;0"</span><span class="t-op">,</span></div>
-            <div>&nbsp; <span class="t-key">"collection_bucket"</span><span class="t-op">:</span> <span class="t-str">"A1"</span></div>
-            <div><span class="t-op">}</span></div>
-          </div>
-        </div>
+      <div style="display:flex;flex-direction:column;gap:10px;padding-top:8px;">
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Any system that makes an HTTP request can call a rule</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Field names in the request map directly to condition columns</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Output fields come back by name &mdash; your system reads what it needs</div>
+        <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:var(--dimwhite);"><span style="color:var(--green);">&#10003;</span> Every call logged with input, output, matched row, and response time</div>
       </div>
     </div>
+
+    <!-- FULL WIDTH FLOW -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <!-- INPUT -->
+      <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;border:1px solid var(--border);border-radius:10px 10px 0 0;overflow:hidden;">
+        <div style="background:rgba(37,99,235,.08);border-right:1px solid var(--border);padding:20px 24px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--accent2);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;">Step 1</div>
+          <div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;">Your system sends</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">A POST request with named input fields matching your rule&rsquo;s condition columns</div>
+        </div>
+        <div style="background:var(--surface2);padding:20px 24px;font-family:var(--mono);font-size:12px;line-height:1.9;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+            <div>
+              <div style="color:var(--muted);font-size:10px;margin-bottom:8px;">POST /api/solve/order-pricing</div>
+              <div><span style="color:var(--accent2);">"customer_tier"</span><span style="color:var(--muted);">: </span><span style="color:#F9A8D4;">"gold"</span></div>
+              <div><span style="color:var(--accent2);">"order_value"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">340</span></div>
+              <div><span style="color:var(--accent2);">"region"</span><span style="color:var(--muted);">: </span><span style="color:#F9A8D4;">"EU"</span></div>
+              <div><span style="color:var(--accent2);">"first_order"</span><span style="color:var(--muted);">: </span><span style="color:#86EFAC;">false</span></div>
+            </div>
+            <div>
+              <div style="color:var(--muted);font-size:10px;margin-bottom:8px;">POST /api/solve/loan-eligibility</div>
+              <div><span style="color:var(--accent2);">"credit_score"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">720</span></div>
+              <div><span style="color:var(--accent2);">"fraud_flag"</span><span style="color:var(--muted);">: </span><span style="color:#86EFAC;">false</span></div>
+              <div><span style="color:var(--accent2);">"monthly_income"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">3200</span></div>
+              <div><span style="color:var(--accent2);">"bureau_hits"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">0</span></div>
+            </div>
+            <div>
+              <div style="color:var(--muted);font-size:10px;margin-bottom:8px;">POST /api/solve/leave-approval</div>
+              <div><span style="color:var(--accent2);">"tenure_years"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">3</span></div>
+              <div><span style="color:var(--accent2);">"leave_type"</span><span style="color:var(--muted);">: </span><span style="color:#F9A8D4;">"annual"</span></div>
+              <div><span style="color:var(--accent2);">"days_requested"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">5</span></div>
+              <div><span style="color:var(--accent2);">"balance_remaining"</span><span style="color:var(--muted);">: </span><span style="color:#FCD34D;">12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARROW -->
+      <div style="display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,.04);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:12px;gap:12px;">
+        <div style="height:1px;flex:1;background:var(--border);"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;white-space:nowrap;">RULEDECK EVALUATES &mdash; top to bottom, first match wins</div>
+        <div style="height:1px;flex:1;background:var(--border);"></div>
+      </div>
+
+      <!-- RULE TABLE -->
+      <div style="border-left:1px solid var(--border);border-right:1px solid var(--border);">
+        <div style="background:var(--ink2);padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;">loan-eligibility</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--muted);">v3 &middot; published &middot; 5 rows</div>
+          <div style="margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--muted);">condition columns match request field names &rarr; result columns returned in response</div>
+        </div>
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;">
+          <thead>
+            <tr style="background:rgba(255,255,255,.02);">
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--muted);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">#</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent2);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">CONDITION &mdash; credit_score</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent2);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">CONDITION &mdash; fraud_flag</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent2);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">CONDITION &mdash; monthly_income</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--accent2);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">CONDITION &mdash; bureau_hits</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">RESULT &mdash; decision</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">RESULT &mdash; approved_amount</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">RESULT &mdash; rate</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">RESULT &mdash; tenor</th>
+              <th style="padding:8px 12px;border-bottom:1px solid var(--border);color:var(--green);font-weight:400;text-align:left;font-size:9px;letter-spacing:.08em;">RESULT &mdash; collection_bucket</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(30,45,61,.6);">
+              <td style="padding:8px 12px;color:var(--muted);font-size:10px;">1</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">ANY</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">= true</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">ANY</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">ANY</td>
+              <td style="padding:8px 12px;color:var(--red);">declined</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+            </tr>
+            <tr style="background:rgba(37,99,235,.08);border-bottom:1px solid rgba(30,45,61,.6);">
+              <td style="padding:8px 12px;color:var(--muted);font-size:10px;">2</td>
+              <td style="padding:8px 12px;color:var(--green);">&ge; 700</td>
+              <td style="padding:8px 12px;color:var(--green);">= false</td>
+              <td style="padding:8px 12px;color:var(--green);">&ge; 3000</td>
+              <td style="padding:8px 12px;color:var(--green);">= 0</td>
+              <td style="padding:8px 12px;color:var(--green);font-weight:600;">approved &#10003;</td>
+              <td style="padding:8px 12px;color:var(--green);">12000</td>
+              <td style="padding:8px 12px;color:var(--green);">7.9%</td>
+              <td style="padding:8px 12px;color:var(--green);">36mo</td>
+              <td style="padding:8px 12px;color:var(--green);">A1</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(30,45,61,.6);">
+              <td style="padding:8px 12px;color:var(--muted);font-size:10px;">3</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">&ge; 600</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">= false</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">&ge; 2500</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">&le; 1</td>
+              <td style="padding:8px 12px;color:var(--green);">approved</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">8000</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">11.9%</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">24mo</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">B2</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(30,45,61,.6);">
+              <td style="padding:8px 12px;color:var(--muted);font-size:10px;">4</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">&ge; 500</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">= false</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">&ge; 2000</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">&le; 2</td>
+              <td style="padding:8px 12px;color:var(--amber);">manual</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">5000</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">16.9%</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">12mo</td>
+              <td style="padding:8px 12px;color:var(--dimwhite);">C3</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px;color:var(--muted);font-size:10px;">5</td>
+              <td style="padding:8px 12px;color:var(--muted);font-style:italic;">ELSE</td>
+              <td style="padding:8px 12px;color:var(--muted);font-style:italic;">ELSE</td>
+              <td style="padding:8px 12px;color:var(--muted);font-style:italic;">ELSE</td>
+              <td style="padding:8px 12px;color:var(--muted);font-style:italic;">ELSE</td>
+              <td style="padding:8px 12px;color:var(--red);">declined</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+              <td style="padding:8px 12px;color:var(--muted);">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <!-- ARROW -->
+      <div style="display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,.03);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:12px;gap:12px;">
+        <div style="height:1px;flex:1;background:var(--border);"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.1em;white-space:nowrap;">ROW 2 MATCHED &mdash; returns in &lt; 2ms</div>
+        <div style="height:1px;flex:1;background:var(--border);"></div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div style="display:grid;grid-template-columns:1fr 3fr;gap:0;border:1px solid var(--border);border-radius:0 0 10px 10px;overflow:hidden;">
+        <div style="background:rgba(34,197,94,.06);border-right:1px solid var(--border);padding:20px 24px;display:flex;flex-direction:column;justify-content:center;">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;">Step 3</div>
+          <div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;">Your system receives</div>
+          <div style="font-size:12px;color:var(--muted);line-height:1.6;">The matched row&rsquo;s result columns returned by name. Read what you need, ignore the rest.</div>
+        </div>
+        <div style="background:var(--surface2);padding:20px 24px;font-family:var(--mono);font-size:12px;line-height:1.9;">
+          <div style="color:var(--green);font-size:10px;margin-bottom:10px;">200 OK &middot; matched: true &middot; version: 3</div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;">
+            <div><div style="color:var(--muted);font-size:9px;margin-bottom:4px;">decision</div><div style="color:#86EFAC;">"approved"</div></div>
+            <div><div style="color:var(--muted);font-size:9px;margin-bottom:4px;">approved_amount</div><div style="color:#FCD34D;">12000</div></div>
+            <div><div style="color:var(--muted);font-size:9px;margin-bottom:4px;">rate</div><div style="color:#86EFAC;">"7.9%"</div></div>
+            <div><div style="color:var(--muted);font-size:9px;margin-bottom:4px;">tenor</div><div style="color:#86EFAC;">"36mo"</div></div>
+            <div><div style="color:var(--muted);font-size:9px;margin-bottom:4px;">collection_bucket</div><div style="color:#86EFAC;">"A1"</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /flow -->
   </div>
 </section>
 
@@ -748,7 +864,7 @@
 <section id="who">
   <div class="container">
     <p class="section-eyebrow">Who it&rsquo;s for</p>
-    <h2>If you make the same decision<br><em>more than once, automate it.</em></h2>
+    <h2>Built for any team<br><em>making repeatable decisions.</em></h2>
     <p class="section-sub" style="margin-bottom:16px;">You don&rsquo;t need to be a tech company to benefit. Any business that applies repeatable logic &mdash; approvals, pricing, routing, eligibility &mdash; can replace manual work or tangled spreadsheets with a clean rule that runs automatically.</p>
     <div class="personas">
       <div class="persona-card">
