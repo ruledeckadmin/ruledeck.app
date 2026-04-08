@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ruledeck — Your Business Rules. Your Server. Your Control.</title>
 <meta name="description" content="A lightweight self-hosted decision engine for operations, finance, retail, and tech teams. Visual editor, live API, audit trail. One-time licence, €499." />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231a4a6e'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23f59e0b' stroke-width='2'/%3E%3Crect x='8' y='9' width='16' height='4' rx='1' fill='white' opacity='0.9'/%3E%3Crect x='8' y='15' width='16' height='3' rx='1' fill='white' opacity='0.6'/%3E%3Crect x='8' y='20' width='10' height='3' rx='1' fill='%23f59e0b' opacity='0.9'/%3E%3C/svg%3E" />
+
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -523,7 +523,7 @@
     <a href="/demo">Demo</a>
     <a href="/faq">FAQ</a>
     <a href="#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#b1d9d4dddddef1c3c4ddd4d5d4d2da9fd0c1c1" class="nav-cta">Get in touch &rarr;</a>
+    <a href="mailto:hello@ruledeck.app" class="nav-cta">Get in touch &rarr;</a>
   </div>
 </nav>
 
@@ -540,7 +540,7 @@
         </p>
         <div class="hero-actions fade-up fade-up-4">
           <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-          <a href="/demo" class="btn-secondary">Watch demo</a>
+          <a href="/demo" class="btn-secondary">Watch the demo</a>
         </div>
       </div>
       <div class="hero-visual fade-up fade-up-3">
@@ -577,7 +577,7 @@
     <div class="stats-grid">
       <div class="stat-item"><div class="stat-num">&lt;<span>2</span>ms</div><div class="stat-label">Average decision time</div></div>
       <div class="stat-item"><div class="stat-num"><span>Docker</span></div><div class="stat-label">Ships as container</div></div>
-      <div class="stat-item"><div class="stat-num"><span>Zero</span></div><div class="stat-label">Recurring fees</div></div>
+      <div class="stat-item"><div class="stat-num"><span>Self</span></div><div class="stat-label">Hosted on your server</div></div>
       <div class="stat-item"><div class="stat-num">&euro;<span>499</span></div><div class="stat-label">One-time licence</div></div>
     </div>
   </div>
@@ -590,13 +590,13 @@
       <div>
         <p class="section-eyebrow">Why Ruledeck exists</p>
         <div class="origin-quote">
-          &ldquo;Enterprise decisioning platforms charge <em>per decision</em>. At scale, that&rsquo;s not a tool cost &mdash; it&rsquo;s a tax on your business logic.&rdquo;
+          &ldquo;The logic that drives your business should be owned by the people who understand it &mdash; not locked in a codebase waiting for an engineering sprint.&rdquo;
         </div>
         <div class="origin-body">
-          <p>Ruledeck was built by practitioners who spent years running decision models in financial services &mdash; credit scoring, eligibility checks, fraud rules, pricing logic. The tools available were either priced out of reach, too complex for non-engineers to operate, or both.</p>
-          <p>The pattern repeated across every organisation: a business team would update a policy, an engineering sprint would be needed to translate it into code, and by the time it deployed the market had already moved. Rules should be owned by the people who understand them.</p>
-          <p>Most decisioning platforms grow by adding features. Workflow builders, node canvases, AI assistants, analytics dashboards. The pricing grows with them. The complexity grows with them. The features you actually need stay on the roadmap. You end up paying for a platform full of things you don&rsquo;t use, while waiting months for the one thing you do.</p>
-          <p>Ruledeck does one thing: evaluates your business rules and returns a result. A visual editor, a live API, a full audit trail. One licence. Run it yourself.</p>
+          <p>Ruledeck was built by someone who spent years sitting between business, data and engineering teams &mdash; not writing the code, not signing off the strategy, but making sure the right things got built the right way. The frustration that kept coming up was always the same: decision logic that belonged to the business kept ending up in the codebase, and every change needed a developer.</p>
+          <p>Enterprise platforms exist that solve this well. They earn their price for the organisations that need everything they offer. For everyone else &mdash; teams that just need decision tables, a live API, and an audit trail &mdash; those tools were never really an option.</p>
+          <p>Ruledeck does roughly 80 percent of what those platforms do, for a fraction of the cost. It is built for the teams where the missing 20 percent was never on the requirements list. If that is you, it will probably do the job. If you need enterprise support, SOC2, or a vendor assessment package, it will not.</p>
+          <p>One thing worth saying: this was built with AI assistance, by someone who is not a developer. That is worth being honest about. AI is a tool. It depends entirely on the person using it and whether they understand the problem well enough to direct it. The domain knowledge here is real. The AI helped execute it.</p>
         </div>
       </div>
       <div class="origin-trust">
@@ -614,8 +614,8 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <h4>Automated regression suite</h4>
-            <p>Engine logic, API contracts, security headers, session handling, and dual-instance isolation are all covered by an automated regression suite run before every release.</p>
+            <h4>Built to be maintained</h4>
+            <p>Test coverage across engine logic, API behaviour, security defaults and performance under load. Documentation ships with the product. This was not built to be abandoned on day three.</p>
           </div>
         </div>
         <div class="trust-item">
@@ -865,7 +865,7 @@
   <div class="container">
     <p class="section-eyebrow">Who it&rsquo;s for</p>
     <h2>Built for any team<br><em>making repeatable decisions.</em></h2>
-    <p class="section-sub" style="margin-bottom:16px;">You don&rsquo;t need to be a tech company to benefit. Any business that applies repeatable logic &mdash; approvals, pricing, routing, eligibility &mdash; can replace manual work or tangled spreadsheets with a clean rule that runs automatically.</p>
+    <p class="section-sub" style="margin-bottom:16px;">Any team that makes the same kind of decision repeatedly &mdash; approvals, pricing, routing, eligibility &mdash; and wants to own that logic directly rather than waiting on engineering. Worth being clear about who it is not for: large enterprises with vendor assessment requirements, SOC2 needs, or dedicated support teams. Those are legitimate requirements and there are platforms built for them. This is not one of them.</p>
     <div class="personas">
       <div class="persona-card">
         <div class="persona-tag">Fintech &middot; Lending &middot; Insurance</div>
@@ -920,12 +920,12 @@
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
         <h4>Version history</h4>
-        <p>Every published version is saved with a timestamp and author. Roll back instantly if needed. Versions are pinnable via API.</p>
+        <p>Every published version is saved with a timestamp. Roll back instantly if needed. Versions are pinnable via API.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-        <h4>Excel import / export</h4>
-        <p>Rules can be imported from and exported to Excel. Your existing spreadsheet logic migrates directly &mdash; no manual re-entry.</p>
+        <h4>Excel &amp; JSON import / export</h4>
+        <p>Rules can be imported from and exported to Excel or JSON. Migrate existing logic directly or share rules for sign-off in a format everyone can read.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
@@ -943,29 +943,9 @@
         <p>Every change &mdash; publish, edit, import, delete &mdash; is logged with timestamp, user, and rule version. Suitable for compliance review.</p>
       </div>
       <div class="feature-item">
-        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <h4>Solve logs</h4>
-        <p>Every API call is logged with input, output, matched status, and response time. Filter by rule and date range from the UI.</p>
-      </div>
-      <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
         <h4>Test &amp; production environments</h4>
         <p>Ships with two isolated instances &mdash; test and production &mdash; with a visible banner so users always know which environment they&rsquo;re in.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
-        <h4>Rule duplication</h4>
-        <p>Copy any rule as a draft in one click. Variant testing, policy iterations, and staged rollouts without starting from scratch.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-        <h4>REST API</h4>
-        <p>Any system that can make an HTTP request can call your rules &mdash; mobile apps, backend services, internal portals, or data pipelines.</p>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <h4>Scheduled activation</h4>
-        <p>Schedule rule versions to activate at a future date. Prepare changes in advance and let them go live automatically.</p>
       </div>
     </div>
   </div>
@@ -988,16 +968,6 @@
         <p>Return the right price, rate, or promotion based on customer segment, order value, or risk tier. A/B test pricing variants before full rollout &mdash; built in, no extra tooling.</p>
       </div>
       <div class="usecase-card">
-        <div class="usecase-icon"><svg viewBox="0 0 24 24"><path d="M5 8h14M5 8a2 2 0 1 0 0-4h14a2 2 0 1 0 0 4M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8m-9 4h4"/></svg></div>
-        <h3>Shipping &amp; Fulfilment</h3>
-        <p>Calculate shipping cost, select carrier, or apply free-shipping thresholds based on order value, weight, and destination. Change rules without a deployment.</p>
-      </div>
-      <div class="usecase-card">
-        <div class="usecase-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3>HR &amp; People Operations</h3>
-        <p>Leave approval by tenure and balance, onboarding routing by role, benefit eligibility by contract type. Your HR team owns the rules directly &mdash; no ticket required.</p>
-      </div>
-      <div class="usecase-card">
         <div class="usecase-icon"><svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
         <h3>Discounts &amp; Promotions</h3>
         <p>Apply the right discount based on customer tier, basket size, campaign code, or first-purchase status. Handle stacking logic with chained rules. Update live without a code release.</p>
@@ -1013,14 +983,9 @@
         <p>Route requests, cases, or tasks to the right team or system based on type, value, SLA, or profile. Chain multiple rules for complex multi-stage flows.</p>
       </div>
       <div class="usecase-card">
-        <div class="usecase-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Fraud &amp; Risk Scoring</h3>
-        <p>Combine transaction amount, frequency, and risk signals into a tiered score. Route high-risk cases to manual review. Update thresholds in real time without a deployment.</p>
-      </div>
-      <div class="usecase-card">
-        <div class="usecase-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3>SLA &amp; Support Routing</h3>
-        <p>Route support tickets and service requests to the right team based on plan tier, issue type, and severity. Define escalation rules without touching your helpdesk code.</p>
+        <div class="usecase-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>HR &amp; People Operations</h3>
+        <p>Leave approval by tenure and balance, onboarding routing by role, benefit eligibility by contract type. Your HR team owns the rules directly &mdash; no ticket required.</p>
       </div>
     </div>
   </div>
@@ -1144,85 +1109,13 @@
   </div>
 </section>
 
-<!-- INTERACTIVE DEMO -->
-<section id="demo">
-  <div class="container">
-    <p class="section-eyebrow">Try it</p>
-    <h2>Build a rule.<br><em>See it run.</em></h2>
-    <p class="section-sub" style="margin-bottom:48px;">Add conditions and a result, enter some test values, and click Run. This is exactly how Ruledeck works &mdash; your conditions, your outputs, instant results.</p>
-    <div class="demo-inner">
-      <div>
-        <h3 style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px;">How the demo works</h3>
-        <p style="font-size:14px;color:var(--dimwhite);line-height:1.75;margin-bottom:20px;">Each row you add is a rule. When you click Run, the engine checks your test values against each row from top to bottom and returns the first match.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
-          <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:24px;height:24px;border-radius:50%;background:rgba(37,99,235,.15);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--accent2);">1</div><div style="font-size:14px;color:var(--dimwhite);line-height:1.6;">Add rows with <strong style="color:var(--white);">condition values</strong> and a <strong style="color:var(--white);">result</strong></div></div>
-          <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:24px;height:24px;border-radius:50%;background:rgba(37,99,235,.15);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--accent2);">2</div><div style="font-size:14px;color:var(--dimwhite);line-height:1.6;">Enter <strong style="color:var(--white);">test values</strong> for both inputs</div></div>
-          <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:24px;height:24px;border-radius:50%;background:rgba(37,99,235,.15);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--mono);font-size:11px;color:var(--accent2);">3</div><div style="font-size:14px;color:var(--dimwhite);line-height:1.6;">Click <strong style="color:var(--white);">Run</strong> to see which row matches</div></div>
-        </div>
-        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;">
-          <p style="font-family:var(--mono);font-size:10px;color:var(--accent2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;">Example: discount rule</p>
-          <p style="font-size:13px;color:var(--dimwhite);line-height:1.7;">Try adding rows like:<br>
-          &bull; customer_tier = premium, order_value &gt; 100 &rarr; 20% off<br>
-          &bull; customer_tier = standard, order_value &gt; 200 &rarr; 10% off<br>
-          &bull; * (any), * (any) &rarr; no discount<br>
-          Then test with customer_tier = premium, order_value = 150</p>
-        </div>
-      </div>
-      <div class="demo-builder">
-        <div class="demo-header">
-          <div class="dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
-          <div class="demo-title">ruledeck &mdash; interactive demo</div>
-        </div>
-        <div class="demo-body">
-          <div class="demo-section-label">Rule rows</div>
-          <div class="demo-col-headers">
-            <div class="demo-col-hdr">Input A</div>
-            <div class="demo-col-hdr">Input B (or *)</div>
-            <div class="demo-col-hdr">Result</div>
-            <div></div>
-          </div>
-          <div id="demo-rows">
-            <div class="demo-row">
-              <input type="text" placeholder="e.g. premium" value="premium" />
-              <input type="text" placeholder="e.g. > 100" value="> 100" />
-              <input type="text" placeholder="result" value="20% off" />
-              <button class="demo-del" onclick="delRow(this)">&#215;</button>
-            </div>
-            <div class="demo-row">
-              <input type="text" placeholder="e.g. standard" value="standard" />
-              <input type="text" placeholder="e.g. > 200" value="> 200" />
-              <input type="text" placeholder="result" value="10% off" />
-              <button class="demo-del" onclick="delRow(this)">&#215;</button>
-            </div>
-            <div class="demo-row">
-              <input type="text" placeholder="* = any" value="*" />
-              <input type="text" placeholder="* = any" value="*" />
-              <input type="text" placeholder="result" value="no discount" />
-              <button class="demo-del" onclick="delRow(this)">&#215;</button>
-            </div>
-          </div>
-          <button class="demo-add-row" onclick="addRow()">+ Add row</button>
-          <hr class="demo-divider" />
-          <div class="demo-section-label">Test values</div>
-          <div class="demo-test-input">
-            <input id="test-a" type="text" placeholder="Input A value" value="premium" />
-            <input id="test-b" type="text" placeholder="Input B value" value="150" />
-          </div>
-          <button class="demo-run" onclick="runDemo()">Run &rarr;</button>
-          <div id="demo-result" class="demo-result"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PRICING -->
 <section id="pricing">
   <div class="container">
     <div class="pricing-intro">
       <p class="section-eyebrow">Pricing</p>
       <h2>One price. <em>Unlimited decisions.</em></h2>
-      <p class="section-sub">Perpetual licence. No subscriptions. No recurring fees. No usage caps. No renewal. Everything included.</p>
+      <p class="section-sub">Perpetual licence. No subscriptions. No recurring fees. No usage caps. No renewal. Everything included. Does roughly 80 percent of what enterprise decisioning platforms do, at a fraction of the cost. For teams where the other 20 percent was never a requirement, that is a reasonable trade.</p>
     </div>
     <div class="pricing-single">
       <div class="pricing-card-main">
@@ -1248,7 +1141,7 @@
           </ul>
         </div>
         <a href="#" class="price-cta">Buy now &mdash; &euro;499 &rarr;</a>
-        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="/cdn-cgi/l/email-protection#09616c656566497b7c656c6d6c6a6227687979"><span class="__cf_email__" data-cfemail="fe969b929291be8c8b929b9a9b9d95d09f8e8e">[email&#160;protected]</span></a></p>
+        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="mailto:hello@ruledeck.app">hello@ruledeck.app</a></p>
       </div>
     </div>
   </div>
@@ -1258,11 +1151,11 @@
 <section id="cta">
   <div class="container">
     <div class="cta-inner">
-      <h2>Ready to own your <em>business logic?</em></h2>
-      <p>Five decisions a month or five million &mdash; Ruledeck handles it. One licence, your server, no ongoing costs.</p>
+      <h2>Your rules.<br><em>Your server.</em></h2>
+      <p>One licence. Deploy today. No subscriptions, no usage limits, no recurring costs.</p>
       <div class="cta-actions">
         <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-        <a href="/cdn-cgi/l/email-protection#375f525b5b587745425b525352545c19564747">Ask a question</a>
+        <a href="mailto:hello@ruledeck.app">Ask a question</a>
       </div>
     </div>
   </div>
@@ -1281,12 +1174,12 @@
     <a href="#pricing">Pricing</a>
     <a href="/terms">Terms</a>
     <a href="/privacy">Privacy</a>
-    <a href="/cdn-cgi/l/email-protection#325a575e5e5d7240475e57565751591c534242">Contact</a>
+    <a href="mailto:hello@ruledeck.app">Contact</a>
   </div>
   <div>&copy; 2026 MSBit O&Uuml;</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
@@ -1335,12 +1228,6 @@ function runDemo() {
   if (matched !== null) {
     resultEl.className = 'demo-result matched';
     resultEl.innerHTML = '<span style="color:var(--green);font-family:var(--mono);font-size:10px;letter-spacing:.06em;">&#10003; MATCHED row ' + matchedRow + '</span><br><br><span style="color:var(--accent2);">&quot;result&quot;</span><span style="color:var(--muted);">: </span><span style="color:#86EFAC;">&quot;' + matched + '&quot;</span>';
-  } else {
-    resultEl.className = 'demo-result no-match';
-    resultEl.innerHTML = '<span style="color:#EF4444;font-family:var(--mono);font-size:10px;letter-spacing:.06em;">&#10007; NO MATCH</span><br><br><span style="color:var(--muted);font-size:13px;">No row matched. Add a row with * for both conditions as a fallback.</span>';
-  }
-}
-</script>
-
+ 
 </body>
 </html>
