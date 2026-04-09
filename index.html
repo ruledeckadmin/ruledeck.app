@@ -231,7 +231,7 @@
   .trust-item:hover { border-color: var(--accent2); }
   .trust-ico { flex-shrink: 0; margin-top: 2px; }
   .trust-item h3 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
-  .trust-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .trust-item p { font-size: 13px; color: #9ca3af; line-height: 1.6; }
 
   /* HOW IT WORKS */
   #how { padding: 100px 0; }
@@ -239,6 +239,7 @@
   .steps .step-it { grid-column: span 1; }
   .steps-it-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 60px; margin-bottom: 2px; }
   .steps-biz-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+  .steps-biz-row .step-num { color: #1d4ed8; }
   .step {
     background: var(--surface); padding: 36px 28px;
     border: 1px solid var(--border); position: relative; transition: border-color .3s;
@@ -303,7 +304,7 @@
   /* FEATURES */
   #features { padding: 100px 0; background: var(--surface2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .features-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
     background: var(--border); border: 1px solid var(--border);
     border-radius: 10px; overflow: hidden; margin-top: 50px;
   }
@@ -589,7 +590,7 @@
   <div class="container">
     <div class="origin-inner">
       <div>
-        <p class="section-eyebrow">Why Ruledeck exists</p>
+        <h2 class="section-eyebrow">Why Ruledeck exists</h2>
         <div class="origin-quote">
           &ldquo;The logic that drives your business should be owned by the people who understand it &mdash; not locked in a codebase waiting for an engineering sprint.&rdquo;
         </div>
