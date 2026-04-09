@@ -532,7 +532,7 @@
     <a href="/demo">Demo</a>
     <a href="/faq">FAQ</a>
     <a href="#pricing">Pricing</a>
-    <a href="mailto:hello@ruledeck.app" class="nav-cta">Get in touch &rarr;</a>
+    <a href="/cdn-cgi/l/email-protection#d3bbb6bfbfbc93a1a6bfb6b7b6b0b8fdb2a3a3" class="nav-cta">Get in touch &rarr;</a>
   </div>
 </nav>
 <main>
@@ -550,7 +550,7 @@
         </p>
         <div class="hero-actions fade-up fade-up-4">
           <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-          <a href="/demo" class="btn-secondary">Watch the demo</a>
+          <a href="#demovideo" class="btn-secondary">Watch the demo</a>
         </div>
       </div>
       <div class="hero-visual fade-up fade-up-3">
@@ -592,6 +592,23 @@
     </div>
   </div>
 </div>
+
+<!-- DEMO VIDEO -->
+<section id="demovideo" style="padding:80px 0 0;">
+  <div class="container">
+    <p class="section-eyebrow">See it in action</p>
+    <h2 style="margin-bottom:32px;">From idea to live API<br><em>in under two minutes.</em></h2>
+    <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--ink2);max-width:900px;margin:0 auto;">
+      <div style="background:var(--ink2);padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px;">Ruledeck — live demo</span>
+      </div>
+      <video autoplay loop muted playsinline style="width:100%;display:block;">
+        <source src="Ruledeck demo s.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
 
 <!-- ORIGIN STORY -->
 <section id="origin">
@@ -1151,7 +1168,7 @@
           </ul>
         </div>
         <a href="#" class="price-cta">Buy now &mdash; &euro;499 &rarr;</a>
-        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="mailto:hello@ruledeck.app">hello@ruledeck.app</a></p>
+        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="/cdn-cgi/l/email-protection#167e737a7a795664637a737273757d38776666"><span class="__cf_email__" data-cfemail="39515c555556794b4c555c5d5c5a5217584949">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -1165,7 +1182,7 @@
       <p>One licence. Deploy today. No subscriptions, no usage limits, no recurring costs.</p>
       <div class="cta-actions">
         <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-        <a href="mailto:hello@ruledeck.app">Ask a question</a>
+        <a href="/cdn-cgi/l/email-protection#81e9e4ededeec1f3f4ede4e5e4e2eaafe0f1f1">Ask a question</a>
       </div>
     </div>
   </div>
@@ -1186,12 +1203,12 @@
     <a href="#pricing">Pricing</a>
     <a href="/terms">Terms</a>
     <a href="/privacy">Privacy</a>
-    <a href="mailto:hello@ruledeck.app">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#b2dad7dededdf2c0c7ded7d6d7d1d99cd3c2c2">Contact</a>
   </div>
   <div>&copy; 2026 MSBit O&Uuml;</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
@@ -1240,12 +1257,4 @@ function runDemo() {
   if (matched !== null) {
     resultEl.className = 'demo-result matched';
     resultEl.innerHTML = '<span style="color:var(--green);font-family:var(--mono);font-size:10px;letter-spacing:.06em;">&#10003; MATCHED row ' + matchedRow + '</span><br><br><span style="color:var(--accent2);">&quot;result&quot;</span><span style="color:var(--muted);">: </span><span style="color:#86EFAC;">&quot;' + matched + '&quot;</span>';
-  } else {
-    resultEl.className = 'demo-result no-match';
-    resultEl.innerHTML = '<span style="color:#EF4444;font-family:var(--mono);font-size:10px;letter-spacing:.06em;">&#10007; NO MATCH</span><br><br><span style="color:var(--muted);font-size:13px;">No row matched. Add a row with * for both conditions as a fallback.</span>';
-  }
-}
-</script>
-
-</body>
-</html>
+ 
