@@ -157,11 +157,11 @@
   .dot-g { background: #22C55E; }
   .terminal-url {
     margin-left: 8px; font-family: var(--mono); font-size: 11px;
-    color: var(--muted); flex: 1;
+    color: #9ca3af; flex: 1;
     background: rgba(255,255,255,.04); padding: 4px 10px; border-radius: 4px;
   }
   .terminal-body { padding: 20px; font-family: var(--mono); font-size: 12.5px; line-height: 1.8; }
-  .t-comment { color: #4B6A88; }
+  .t-comment { color: #6b90b0; }
   .t-key    { color: var(--accent2); }
   .t-val    { color: #86EFAC; }
   .t-num    { color: #FCD34D; }
@@ -195,7 +195,7 @@
     color: var(--white); line-height: 1;
   }
   .stat-num span { color: var(--accent2); }
-  .stat-label { font-size: 12px; color: var(--muted); margin-top: 6px; letter-spacing: .04em; }
+  .stat-label { font-size: 12px; color: #9ca3af; margin-top: 6px; letter-spacing: .04em; }
 
   /* SECTION HEADERS */
   .section-eyebrow {
@@ -230,7 +230,7 @@
   }
   .trust-item:hover { border-color: var(--accent2); }
   .trust-ico { flex-shrink: 0; margin-top: 2px; }
-  .trust-item h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .trust-item h3 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
   .trust-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
   /* HOW IT WORKS */
@@ -309,7 +309,7 @@
   }
   .feature-item { background: var(--surface); padding: 28px; transition: background .2s; }
   .feature-item:hover { background: var(--ink2); }
-  .feature-item h4 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .feature-item h3 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
   .feature-item p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
   .feature-badge {
     display: inline-block; font-family: var(--mono); font-size: 9px;
@@ -356,7 +356,7 @@
   .security-list li { display: flex; gap: 16px; align-items: start; }
   .sec-ico { flex-shrink: 0; margin-top: 3px; }
   .sec-ico svg { width: 20px; height: 20px; stroke: var(--accent2); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .sec-text h4 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .sec-text h3 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
   .sec-text p  { font-size: 13px; color: var(--dimwhite); line-height: 1.6; }
   .audit-preview { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-top: 32px; }
   .audit-header { background: var(--ink2); padding: 12px 16px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
@@ -523,9 +523,10 @@
     <a href="/demo">Demo</a>
     <a href="/faq">FAQ</a>
     <a href="#pricing">Pricing</a>
-    <a href="/cdn-cgi/l/email-protection#ddb5b8b1b1b29dafa8b1b8b9b8beb6f3bcadad" class="nav-cta">Get in touch &rarr;</a>
+    <a href="mailto:hello@ruledeck.app" class="nav-cta">Get in touch &rarr;</a>
   </div>
 </nav>
+<main>
 
 <!-- HERO -->
 <section id="hero">
@@ -605,7 +606,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
           </div>
           <div>
-            <h4>Built on real-world experience</h4>
+            <h3>Built on real-world experience</h3>
             <p>Designed by practitioners who have managed decision models at scale in high-volume financial services environments &mdash; not a generic workflow tool adapted after the fact.</p>
           </div>
         </div>
@@ -614,7 +615,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <h4>Built to last</h4>
+            <h3>Built to last</h3>
             <p>Test coverage across engine logic, API behaviour, security defaults, and performance under load. Full documentation ships with the product. Bugs get fixed. This is a maintained product, not a launch-and-forget release.</p>
           </div>
         </div>
@@ -623,7 +624,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
-            <h4>Production-hardened defaults</h4>
+            <h3>Production-hardened defaults</h3>
             <p>Security headers, brute-force login lockout, rate limiting, HttpOnly cookies, body size limits, and SQL injection protection &mdash; on by default.</p>
           </div>
         </div>
@@ -632,7 +633,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
           </div>
           <div>
-            <h4>Self-hosted, your infrastructure</h4>
+            <h3>Self-hosted, your infrastructure</h3>
             <p>Deploy on any server you control. No black-box SaaS, no data leaving your environment, no renewal surprises.</p>
           </div>
         </div>
@@ -909,42 +910,42 @@
     <div class="features-grid">
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div>
-        <h4>Visual rule editor</h4>
+        <h3>Visual rule editor</h3>
         <p>Build and edit decision tables in any browser. Business users can own their rules without touching code or spreadsheets.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.51 0 2.93.37 4.18 1.02"/><path d="M21 3l-9 9"/><path d="M15 3h6v6"/></svg></div>
-        <h4>Built-in testbench</h4>
+        <h3>Built-in testbench</h3>
         <p>Test any rule with real inputs before publishing. Debug mode shows exactly which row matched and why.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h4>Version history</h4>
+        <h3>Version history</h3>
         <p>Every published version is saved with a timestamp. Roll back instantly if needed. Versions are pinnable via API.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-        <h4>Excel &amp; JSON import / export</h4>
+        <h3>Excel &amp; JSON import / export</h3>
         <p>Rules can be imported from and exported to Excel or JSON. Migrate existing logic directly or share rules for sign-off in a format everyone can read.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
-        <h4>A/B split testing</h4>
+        <h3>A/B split testing</h3>
         <p>Built-in <code style="font-family:var(--mono);font-size:11px;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;">$random</code> variable enables champion&ndash;challenger testing natively. No extra tooling.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
-        <h4>Rule chaining</h4>
+        <h3>Rule chaining</h3>
         <p>Chain multiple rules in sequence &mdash; eligibility then pricing, scoring then routing. Output of one step becomes input to the next.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg></div>
-        <h4>Full audit trail</h4>
+        <h3>Full audit trail</h3>
         <p>Every change &mdash; publish, edit, import, delete &mdash; is logged with timestamp, user, and rule version. Suitable for compliance review.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h4>Test &amp; production environments</h4>
+        <h3>Test &amp; production environments</h3>
         <p>Ships with two isolated instances &mdash; test and production &mdash; with a visible banner so users always know which environment they&rsquo;re in.</p>
       </div>
     </div>
@@ -1073,23 +1074,23 @@
         <ul class="security-list">
           <li>
             <div class="sec-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-            <div class="sec-text"><h4>Self-hosted deployment</h4><p>Install on your own server, data centre, or private cloud. You control the infrastructure and the data.</p></div>
+            <div class="sec-text"><h3>Self-hosted deployment</h3><p>Install on your own server, data centre, or private cloud. You control the infrastructure and the data.</p></div>
           </li>
           <li>
             <div class="sec-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-            <div class="sec-text"><h4>API key + session authentication</h4><p>Solve endpoints require a valid API key. The admin UI requires session authentication with brute-force lockout after 5 failed attempts.</p></div>
+            <div class="sec-text"><h3>API key + session authentication</h3><p>Solve endpoints require a valid API key. The admin UI requires session authentication with brute-force lockout after 5 failed attempts.</p></div>
           </li>
           <li>
             <div class="sec-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-            <div class="sec-text"><h4>Hardened by default</h4><p>Helmet security headers, HttpOnly/SameSite cookies, rate limiting, body size enforcement, and SQL injection protection ship enabled out of the box.</p></div>
+            <div class="sec-text"><h3>Hardened by default</h3><p>Helmet security headers, HttpOnly/SameSite cookies, rate limiting, body size enforcement, and SQL injection protection ship enabled out of the box.</p></div>
           </li>
           <li>
             <div class="sec-ico"><svg viewBox="0 0 24 24"><path d="M1 6s2-2 5-2 5.5 2 8 2 5-2 5-2v14s-2 2-5 2-5.5-2-8-2-5 2-5 2z"/><line x1="1" y1="12" x2="23" y2="12"/></svg></div>
-            <div class="sec-text"><h4>No usage telemetry</h4><p>Ruledeck does not collect usage data or analytics. No decision data, business logic, or customer information is ever transmitted to any external server.</p></div>
+            <div class="sec-text"><h3>No usage telemetry</h3><p>Ruledeck does not collect usage data or analytics. No decision data, business logic, or customer information is ever transmitted to any external server.</p></div>
           </li>
           <li>
             <div class="sec-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-            <div class="sec-text"><h4>GDPR / data sovereignty</h4><p>Data never leaves your servers, making regional data-residency compliance straightforward for regulated industries.</p></div>
+            <div class="sec-text"><h3>GDPR / data sovereignty</h3><p>Data never leaves your servers, making regional data-residency compliance straightforward for regulated industries.</p></div>
           </li>
         </ul>
       </div>
@@ -1141,7 +1142,7 @@
           </ul>
         </div>
         <a href="#" class="price-cta">Buy now &mdash; &euro;499 &rarr;</a>
-        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="/cdn-cgi/l/email-protection#8ce4e9e0e0e3ccfef9e0e9e8e9efe7a2edfcfc"><span class="__cf_email__" data-cfemail="c0a8a5acacaf80b2b5aca5a4a5a3abeea1b0b0">[email&#160;protected]</span></a></p>
+        <p class="price-note">Secure checkout via Lemon Squeezy. Instant delivery. Questions? <a href="mailto:hello@ruledeck.app">hello@ruledeck.app</a></p>
       </div>
     </div>
   </div>
@@ -1155,12 +1156,14 @@
       <p>One licence. Deploy today. No subscriptions, no usage limits, no recurring costs.</p>
       <div class="cta-actions">
         <a href="#pricing" class="btn-primary">Get Ruledeck &mdash; &euro;499 &rarr;</a>
-        <a href="/cdn-cgi/l/email-protection#1179747d7d7e5163647d747574727a3f706161">Ask a question</a>
+        <a href="mailto:hello@ruledeck.app">Ask a question</a>
       </div>
     </div>
   </div>
 </section>
 
+
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -1174,12 +1177,12 @@
     <a href="#pricing">Pricing</a>
     <a href="/terms">Terms</a>
     <a href="/privacy">Privacy</a>
-    <a href="/cdn-cgi/l/email-protection#80e8e5ececefc0f2f5ece5e4e5e3ebaee1f0f0">Contact</a>
+    <a href="mailto:hello@ruledeck.app">Contact</a>
   </div>
   <div>&copy; 2026 MSBit O&Uuml;</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
