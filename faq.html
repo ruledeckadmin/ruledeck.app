@@ -223,4 +223,8 @@
 function toggleFaq(el) {
   const item = el.parentElement;
   const isOpen = item.classList.contains('open');
-  document
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</html>
